@@ -1,0 +1,26 @@
+$Colour1:#111;
+$Colour2:#fff;
+$Width: 90%;
+
+
+.Header {
+   width: 100%;
+   position: fixed;
+   background-color: $Colour1;
+   padding: 20px 0;
+   color: #fff;
+   text-align: center;
+   &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: $Width;
+      margin: 0 auto;
+   }
+   &__cartBtn:hover {
+      background-color: rgba(255, 255, 255, 0.2) !important;
+   }
+   &__cartIcon {
+      color: $Colour2;
+   }
+}
