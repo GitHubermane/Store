@@ -11,10 +11,12 @@ export const Header = () => {
                     <FaceIcon />
                 </div>
                 <div>
-                    Header
+                    <input
+                        className='Header__searchInput'
+                        placeholder='Search' />
                 </div>
                 <IconButton className='Header__cartBtn'>
-                    <ShoppingCartIcon className='Header__cartIcon'/>
+                    <ShoppingCartIcon className='Header__cartIcon' />
                 </IconButton>
             </div>
         </div>
