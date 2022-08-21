@@ -1,13 +1,11 @@
 import { Request, Response } from 'express'
 
 export const TypeController = {
-    registration(req: Request, res: Response) {
+    async create(req: Request, res: Response) {
 
     },
-    login() {
 
-    },
-    auth() {
+    async getAll(req: Request, res: Response) {
 
     }
 }

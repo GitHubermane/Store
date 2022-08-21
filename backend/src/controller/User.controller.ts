@@ -1,13 +1,13 @@
 import { Request, Response } from 'express'
 
 export const UserController = {
-    registration (req: Request, res: Response) {
+    async registration (req: Request, res: Response) {
         
     },
-    login () {
+    async login () {
 
     },
-    auth(req: Request, res: Response) {
+    async auth(req: Request, res: Response) {
         try {
             const message = {chonk: 'chp'}
             return res.json(message)

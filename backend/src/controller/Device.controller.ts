@@ -1,13 +1,13 @@
 import { Request, Response } from 'express'
 
 export const DeviceController = {
-    registration(req: Request, res: Response) {
+    async create(req: Request, res: Response) {
 
     },
-    login() {
+    async getAll(req: Request, res: Response) {
 
     },
-    auth() {
+    async getOne(req: Request, res: Response) {
 
     }
 }
