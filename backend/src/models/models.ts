@@ -1,9 +1,9 @@
-import { DataTypes } from "sequelize/types";
-import { db } from "../db";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../db";
 
 
 export const Models = {
-    User: db.define('user',
+    User: sequelize.define('user',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
             email: { type: DataTypes.STRING, unique: true },
@@ -12,19 +12,20 @@ export const Models = {
         }
     ),
 
-    Basket: db.define('basket',
+    Basket: sequelize.define('basket',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
         }
     ),
-    BasketDevice: db.define('basketDevice',
+
+    BasketDevice: sequelize.define('basketDevice',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 
         }
     ),
 
-    Device: db.define('device',
+    Device: sequelize.define('device',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
             name: { type: DataTypes.STRING, allowNull: false, unique: true },
@@ -34,28 +35,28 @@ export const Models = {
         }
     ),
 
-    Type: db.define('type',
+    Type: sequelize.define('type',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
             name: { type: DataTypes.STRING, allowNull: false, unique: true }
         }
     ),
 
-    Brand: db.define('brand',
+    Brand: sequelize.define('brand',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
             name: { type: DataTypes.STRING, allowNull: false, unique: true }
         }
     ),
 
-    Rating: db.define('rating',
+    Rating: sequelize.define('rating',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
             rate: { type: DataTypes.STRING, allowNull: false }
         }
     ),
 
-    DeviceInfo: db.define('deviceInfo',
+    DeviceInfo: sequelize.define('deviceInfo',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
             title: { type: DataTypes.STRING, allowNull: false },
@@ -63,7 +64,7 @@ export const Models = {
         }
     ),
 
-    TypeBrand: db.define('typeBrand',
+    TypeBrand: sequelize.define('typeBrand',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 
@@ -97,3 +98,25 @@ Models.DeviceInfo.belongsTo(Models.Device)
 
 Models.Type.belongsToMany(Models.Brand, { through: Models.TypeBrand })
 Models.Brand.belongsToMany(Models.Type, { through: Models.TypeBrand })
+
+const User = sequelize.define('user',
+    {
+        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+        email: { type: DataTypes.STRING, unique: true },
+        password: { type: DataTypes.STRING },
+        role: { type: DataTypes.STRING, defaultValue: 'USER' },
+    }
+)
+const Basket = sequelize.define('basket',
+    {
+        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    }
+)
+
+User.hasOne(Basket)
+Basket.belongsTo(User)
+
+export default {
+    User,
+    Basket
+}
