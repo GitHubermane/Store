@@ -28,6 +28,8 @@ export const Models = {
     Device: sequelize.define('device',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+            brandId: { type: DataTypes.INTEGER, primaryKey: true },
+            typeId: { type: DataTypes.INTEGER, primaryKey: true },
             name: { type: DataTypes.STRING, allowNull: false, unique: true },
             price: { type: DataTypes.INTEGER, allowNull: false },
             img: { type: DataTypes.STRING, allowNull: false },
