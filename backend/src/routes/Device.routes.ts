@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { DeviceController } from "../controller/Device.controller";
+import { CheckRoleMiddleware } from "../middleware/CheckRoleMiddleware";
 
 const router = Router()
 
-router.post('/', DeviceController.create)
+router.post('/', CheckRoleMiddleware('ADMIN'), DeviceController.create)
 router.get('/', DeviceController.getAll)
 router.get('/:id', DeviceController.getOne)
-router.delete('/deleteAll', DeviceController.deleteAll)
+router.delete('/deleteAll', CheckRoleMiddleware('ADMIN'), DeviceController.deleteAll)
 
 export default router

@@ -95,30 +95,8 @@ Models.Rating.belongsTo(Models.Device)
 Models.Device.hasMany(Models.BasketDevice)
 Models.BasketDevice.belongsTo(Models.Device)
 
-Models.Device.hasMany(Models.DeviceInfo)
+Models.Device.hasMany(Models.DeviceInfo, { as: 'info' })
 Models.DeviceInfo.belongsTo(Models.Device)
 
 Models.Type.belongsToMany(Models.Brand, { through: Models.TypeBrand })
 Models.Brand.belongsToMany(Models.Type, { through: Models.TypeBrand })
-
-const User = sequelize.define('user',
-    {
-        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-        email: { type: DataTypes.STRING, unique: true },
-        password: { type: DataTypes.STRING },
-        role: { type: DataTypes.STRING, defaultValue: 'USER' },
-    }
-)
-const Basket = sequelize.define('basket',
-    {
-        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    }
-)
-
-User.hasOne(Basket)
-Basket.belongsTo(User)
-
-export default {
-    User,
-    Basket
-}
