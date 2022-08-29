@@ -8,5 +8,7 @@ router.post('/', CheckRoleMiddleware('ADMIN'), DeviceController.create)
 router.get('/', DeviceController.getAll)
 router.get('/:id', DeviceController.getOne)
 router.delete('/deleteAll', CheckRoleMiddleware('ADMIN'), DeviceController.deleteAll)
+router.delete('/:id', CheckRoleMiddleware('ADMIN'), DeviceController.deleteOne)
+
 
 export default router

@@ -1,20 +1,19 @@
-import { Request, Response } from 'express'
-import { Models } from '../models/models'
+import { NextFunction, Request, Response } from 'express'
+import { ApiError } from '../error/ApiError'
+import TypeService from '../service/Type.service'
 
 export const TypeController = {
-    async create(req: Request, res: Response) {
+    async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const { name } = req.body
-            const type = await Models.Type.create({ name })
+            const type = await TypeService.create(req.body)
             return res.json(type)
-        } catch (error) {
-            return res.json(error)
+        } catch (error: any) {
+            next(ApiError.badRequest('Введите название'))
         }
-
     },
 
     async getAll(req: Request, res: Response) {
-        const types = await Models.Type.findAll()
+        const types = await TypeService.getAll()
         return res.json(types)
     }
 }
