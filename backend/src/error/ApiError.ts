@@ -1,23 +1,21 @@
+import { ValidationError } from "express-validator"
+
 export class ApiError extends Error {
     status: number
-    message: string
+    errors: Array<ValidationError>
 
-    constructor(status: number, message: string) {
-        super()
+    constructor(status: number, message: string, errors: Array<ValidationError> = []) {
+        super(message)
         this.status = status
-        this.message = message
+        this.errors = errors
     }
 
-    static forbidden(message: string) {
-        return new ApiError(403, message)
+    static unauthorized () {
+        return new ApiError(401, "Пользователь не авторизован")
     }
 
-    static badRequest(message: string) {
-        return new ApiError(404, message)
-    }
-
-    static internal(message: string) {
-        return new ApiError(500, message)
+    static badRequest(message: string, errors?: Array<ValidationError>) {
+        return new ApiError(404, message, errors)
     }
 }
 

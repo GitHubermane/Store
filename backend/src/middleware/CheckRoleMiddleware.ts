@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { decode } from "punycode";
-import { roleType } from "../controller/User.controller";
+import { roleType } from "../User/User.controller";
+import { ApiError } from "../error/ApiError";
+import TokenService from "../service/Token.service";
 
 
 //   Убрать в отдельный файл с типами
@@ -10,24 +11,24 @@ declare module "jsonwebtoken" {
         role: string;
     }
 }
-
+//   Вынести логику в отдельную функцию (одинакова с AuthMiddleware)
 export const CheckRoleMiddleware = (role: roleType) => {
-    return (req: any, res: Response, next: NextFunction) => {
-    if (req.method === 'OPTIONS') {
-        next()
-    }
-    try {
-        const token = req.headers.authorization?.split(' ')[1]
-        if (!token) {
-            return res.status(401).json({ message: 'Необходимо авторизироваться' })
+    return async (req: any, res: Response, next: NextFunction) => {
+        if (req.method === 'OPTIONS') {
+            next()
         }
-        const decoded = jwt.verify(token, String(process.env.SECRET_KEY)) as JwtPayload
-        if (decoded.role !== role ){
-            return res.status(403).json({message: 'Нет доступа'})
+        try {
+            const accessToken = req.headers.authorization?.split(' ')[1]
+            if (!accessToken) return next(ApiError.unauthorized())
+            const userData = await TokenService.verifyAccessToken(accessToken) as JwtPayload
+
+            if (userData?.role !== role) return next(ApiError.unauthorized())
+            
+
+            req.user = userData
+            next()
+        } catch (e) {
+            return next(ApiError.unauthorized())
         }
-        req.user = decoded
-        next()
-    } catch (e) {
-        res.status(401).json({ message: 'Необходимо авторизироваться' })
     }
-}}
+}

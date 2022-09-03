@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { ApiError } from '../error/ApiError'
-import TypeService from '../service/Type.service'
+import TypeService from './Type.service'
 
 export const TypeController = {
     async create(req: Request, res: Response, next: NextFunction) {

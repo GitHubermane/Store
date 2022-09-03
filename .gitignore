@@ -5,6 +5,9 @@ node_modules*
 /.pnp
 .pnp.js
 
+# static in backend
+static*
+
 # testing
 /coverage
 

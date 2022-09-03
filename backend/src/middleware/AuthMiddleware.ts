@@ -1,19 +1,21 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import { ApiError } from "../error/ApiError";
+import TokenService from "../service/Token.service";
 
-export const AuthMiddleware = (req: any, res: Response, next: NextFunction) => {
+export const AuthMiddleware = async (req: any, res: Response, next: NextFunction) => {
     if (req.method === 'OPTIONS') {
         next()
     }
     try {
-        const token = req.headers.authorization?.split(' ')[1]
-        if (!token) {
-            return res.status(401).json({ message: 'Необходимо авторизироваться' })
-        }
-        const decoded = jwt.verify(token, String(process.env.SECRET_KEY))
-        req.user = decoded
+        const accessToken = req.headers.authorization?.split(' ')[1]
+        if (!accessToken) return next(ApiError.unauthorized())
+        const userData = await TokenService.verifyAccessToken(accessToken)
+        
+        if (!userData) return next(ApiError.unauthorized())
+
+        req.user = userData
         next()
     } catch (e) {
-        res.status(401).json({ message: 'Необходимо авторизироваться' })
+        return next(ApiError.unauthorized())
     }
 }

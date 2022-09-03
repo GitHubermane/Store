@@ -9,6 +9,16 @@ export const Models = {
             email: { type: DataTypes.STRING, unique: true },
             password: { type: DataTypes.STRING },
             role: { type: DataTypes.STRING, defaultValue: 'USER' },
+            isActivated: { type: DataTypes.BOOLEAN, defaultValue: false},
+            activationLink: { type: DataTypes.STRING, unique: true }
+        }
+    ),
+
+    Token: sequelize.define('token',
+        {
+            id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+            userId: { type: DataTypes.INTEGER, primaryKey: true },
+            refreshToken: { type: DataTypes.STRING, allowNull: false},
         }
     ),
 
@@ -37,6 +47,15 @@ export const Models = {
         }
     ),
 
+    DeviceInfo: sequelize.define('deviceInfo',
+        {
+            id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+            // deviceId: { type: DataTypes.INTEGER, primaryKey: true },
+            title: { type: DataTypes.STRING, allowNull: false },
+            describe: { type: DataTypes.STRING, allowNull: false }
+        }
+    ),
+
     Type: sequelize.define('type',
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -55,14 +74,6 @@ export const Models = {
         {
             id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
             rate: { type: DataTypes.STRING, allowNull: false }
-        }
-    ),
-
-    DeviceInfo: sequelize.define('deviceInfo',
-        {
-            id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-            title: { type: DataTypes.STRING, allowNull: false },
-            describe: { type: DataTypes.STRING, allowNull: false }
         }
     ),
 

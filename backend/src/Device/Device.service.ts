@@ -3,6 +3,7 @@ import path from "path"
 import fs from "fs"
 import { v4 } from "uuid"
 import { Models } from "../models/models"
+import { ApiError } from "../error/ApiError"
 type DeviceType = {
     id: number
     brandId: number
@@ -20,7 +21,7 @@ type DeviceInfoType = {
 }
 class DeviceService {
     async create(device: DeviceType, file: UploadedFile) {
-
+        if (!file) throw ApiError.badRequest('Изображение необходимо')
         let filename = v4() + '.jpg'
         file.mv(path.resolve(__dirname, '..', 'static', filename))
         const createdDevice: any = await Models.Device.create({ ...device, img: filename })

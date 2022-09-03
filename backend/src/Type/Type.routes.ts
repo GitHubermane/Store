@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { TypeController } from "../controller/Type.controller";
+import { TypeController } from "./Type.controller";
 import { CheckRoleMiddleware } from "../middleware/CheckRoleMiddleware";
 
 const router = Router()

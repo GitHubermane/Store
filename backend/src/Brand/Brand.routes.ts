@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { BrandController } from "../controller/Brand.controller";
+import { BrandController } from "./Brand.controller";
 import { CheckRoleMiddleware } from "../middleware/CheckRoleMiddleware";
 
 const router = Router()

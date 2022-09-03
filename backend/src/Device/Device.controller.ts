@@ -1,10 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
-import { Models } from '../models/models'
-import { v4 } from 'uuid'
-import path from 'path'
 import { ApiError } from '../error/ApiError'
 import { UploadedFile } from 'express-fileupload'
-import DeviceService from '../service/Device.service'
+import DeviceService from './Device.service'
 
 type DeviceInfoType = {
     id: number
@@ -44,7 +41,7 @@ export const DeviceController = {
         try {
             const device = await DeviceService.getOne(req.params.id)
             return res.json(device)
-        } catch (error: any) {
+        } catch (error: any) {            
             return res.json(error.message)
         }
     },
@@ -62,7 +59,6 @@ export const DeviceController = {
         try {
             const devices = await DeviceService.deleteAll()
             return res.json({ message: "All devices deleted" })
-
         } catch (error) {
             return res.json(error)
         }

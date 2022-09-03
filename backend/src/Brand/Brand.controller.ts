@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { ApiError } from '../error/ApiError'
-import BrandService from '../service/Brand.service'
+import BrandService from './Brand.service'
 
 export const BrandController = {
     async create(req: Request, res: Response, next: NextFunction) {

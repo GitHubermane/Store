@@ -1,8 +1,8 @@
 import { Router } from "express";
-import UserRouter  from "./User.routes"
-import DeviceRouter  from "./Device.routes";
-import TypeRouter  from "./Type.routes";
-import BrandRouter  from "./Brand.routes";
+import UserRouter  from "../User/User.routes"
+import DeviceRouter  from "../Device/Device.routes";
+import TypeRouter  from "../Type/Type.routes";
+import BrandRouter  from "../Brand/Brand.routes";
 
 const router = Router()
 
