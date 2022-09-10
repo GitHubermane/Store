@@ -38,7 +38,7 @@ class UserService {
 
         const activationLink = v4()
 
-        const createdUser: any = await Models.User.create({ email, password: hashPassword, activationLink, role:'ADMIN' })
+        const createdUser: any = await Models.User.create({ email, password: hashPassword, activationLink, role:'USER' })
         await Models.Basket.create({ userId: createdUser.id })
 
         await MailService.sendActiveMail(email, `${process.env.API_URL}/api/user/activate/${activationLink}`)

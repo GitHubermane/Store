@@ -11,7 +11,10 @@ import cookieParser from "cookie-parser"
 const app = express()
 const PORT = process.env.PORT || 5100
 
-app.use(cors())
+app.use(cors({
+    credentials: true,
+    origin: process.env.API_URL
+}))
 app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload({}))
