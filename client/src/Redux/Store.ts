@@ -1,9 +1,11 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { apiSlice } from "../DAL/API/RTKapiSlice";
 import { AuthReducer } from "./Slice/Auth.slice";
+import { ProductsReducer } from "./Slice/Products.slice";
 
 const rootReducer = combineReducers({
     Auth: AuthReducer,
+    Products: ProductsReducer,
     [apiSlice.reducerPath]: apiSlice.reducer
 })
 

@@ -1,6 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import authService from '../../DAL/service/Auth.service'
-import { ITokens, IUser, IUserData } from '../../models/IUserData'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IUserData } from '../../models/IUserData'
 import { login } from '../ActionCreator/Auth.AC'
 
 type LoginStateType = typeof initialState

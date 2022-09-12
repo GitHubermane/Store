@@ -64,7 +64,8 @@ class DeviceService {
             where: { id },
         }) as any
         fs.unlink(`${__dirname}/../static/${device?.img}`, err => {
-            if (err) throw err})
+            if (err) throw err
+        })
         await Models.Device.destroy({
             where: { id },
         })

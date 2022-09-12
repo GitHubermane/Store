@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../../DAL/service/Auth.service";
-import { DispatchType } from "../Store";
 
 // export const login = (email: string, password: string) => async (dispatch: DispatchType) => {
 //     try {
