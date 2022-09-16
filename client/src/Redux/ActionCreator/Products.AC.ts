@@ -13,3 +13,15 @@ export const fetchProducts = createAsyncThunk(
         }
     }
 )
+
+export const fetchSerchedProducts = createAsyncThunk(
+    'products/fetchSerchedProducts',
+    async (payload: string, thunkApi) => {
+        try {
+            const response = await productsService.fetchSearchedProducts(payload)
+            return response.data
+        } catch (error: any) {
+            return thunkApi.rejectWithValue(error.message)
+        }
+    }
+)

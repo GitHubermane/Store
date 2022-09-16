@@ -9,7 +9,6 @@ export const ProductsPage = () => {
     const dispatch = useTypedDispatch()
     const getProducts = async () => {
         const res = await dispatch(fetchProducts())
-        console.log(res)
 
     }
     useEffect(() => {
@@ -25,13 +24,16 @@ export const ProductsPage = () => {
                         className='Card__wrapper'
                     >
                         <div className='Card__imgBlock'>
-                            <img
-                                className='Card__img'
-                                src={`http://localhost:5000/${product.img}`}
-                            />
+                            <NavLink to={`/product/${product.id}`}>
+                                <img
+                                    className='Card__img'
+                                    src={`http://localhost:5000/${product.img}`}
+                                />
+                            </NavLink>
+
                         </div>
                         <div className='Card__infoBlock'>
-                            <NavLink to=''>
+                            <NavLink to={`/product/${product.id}`}>
                                 <div className='Card__name'>
                                     {product.name}
                                 </div>

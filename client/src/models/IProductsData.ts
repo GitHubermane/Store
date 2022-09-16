@@ -1,9 +1,9 @@
-export interface IProductsDataWithCount {
+export interface IProductDataWithCount {
     count: number
-    rows: Array<IProductsData>
+    rows: Array<IProductData>
 }
 
-export interface IProductsData {
+export interface IProductData {
     id: number;
     brandId: number;
     typeId: number;

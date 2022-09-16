@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { IProductsData, IProductsDataWithCount } from "../../models/IProductsData"
-import { fetchProducts } from "../ActionCreator/Products.AC"
+import { IProductData, IProductDataWithCount } from "../../models/IProductsData"
+import { fetchProducts, fetchSerchedProducts } from "../ActionCreator/Products.AC"
 
 type ProductsStateType = typeof initialState
 
 const initialState = {
     productsCount: 0,
-    products: [] as Array<IProductsData>,
+    products: [] as Array<IProductData>,
+    searchedProducts: [] as Array<IProductData>,
     isLoading: false,
     error: ''
 }
@@ -14,13 +15,21 @@ const initialState = {
 export const ProductsSlice = createSlice({
     name: 'products',
     initialState,
-    reducers: {},
+    reducers: {
+        setSearchedProducts: (state, action) => {
+            state.searchedProducts = action.payload
+        }
+    },
     extraReducers: {
-        [fetchProducts.fulfilled.type]: (state, action: PayloadAction<IProductsDataWithCount>) => {
+        [fetchProducts.fulfilled.type]: (state, action: PayloadAction<IProductDataWithCount>) => {
             state.error = ''
             state.isLoading = false
             state.products = action.payload.rows
             state.productsCount = action.payload.count
+        },
+
+        [fetchSerchedProducts.fulfilled.type]: (state, action: PayloadAction<IProductDataWithCount>) => {
+            state.searchedProducts = action.payload.rows
         },
 
         [fetchProducts.pending.type]: (state) => {

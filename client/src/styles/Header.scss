@@ -9,14 +9,19 @@ $Width: 90%;
    padding: 15px 0;
    color: #fff;
    text-align: center;
+
    &__wrapper {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       width: $Width;
       margin: 0 auto;
    }
-   &__searchInput {
+
+   &__inputContainer {
+      position: relative;
+   }
+   &__input {
       padding: 3px 8px;
       background-color: rgba(0, 0, 0, 0);
       color: $Colour2;
@@ -29,9 +34,11 @@ $Width: 90%;
          transition: all 0.2s;
       }
    }
+
    &__cartBtn:hover {
       background-color: rgba(255, 255, 255, 0.2) !important;
    }
+
    &__cartIcon {
       color: $Colour2;
    }

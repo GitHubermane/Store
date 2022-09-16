@@ -4,6 +4,8 @@ import fs from "fs"
 import { v4 } from "uuid"
 import { Models } from "../models/models"
 import { ApiError } from "../error/ApiError"
+import { Op } from "sequelize"
+
 type DeviceType = {
     id: number
     brandId: number
@@ -39,12 +41,17 @@ class DeviceService {
     }
 
     async getAll(queryParams: qs.ParsedQs) {
-        let { brandId, typeId } = queryParams
+        let { brandId, typeId, name } = queryParams
         let limit = Number(queryParams.limit) || 18
         let page = Number(queryParams.page) || 1
         let offset = page * limit - limit
         let devices
-        if (!brandId && !typeId) devices = await Models.Device.findAndCountAll({ limit, offset })
+        if (!brandId && !typeId) {
+            if (name) {
+                return devices = await Models.Device.findAndCountAll({ where: { name: { [Op.startsWith]: name }} })
+            }
+            devices = await Models.Device.findAndCountAll({ limit, offset })
+        }
         if (brandId && !typeId) devices = await Models.Device.findAndCountAll({ where: { brandId }, limit, offset })
         if (!brandId && typeId) devices = await Models.Device.findAndCountAll({ where: { typeId }, limit, offset })
         if (brandId && typeId) devices = await Models.Device.findAndCountAll({ where: { brandId, typeId }, limit, offset })

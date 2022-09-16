@@ -1,0 +1,32 @@
+.DropDown {
+    position: absolute;
+    top: 50px;
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000;
+    background-color: #fff;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 10px;
+        margin: 5px 10px;
+        border-radius: 10px;
+        &:hover {
+            background-color: rgb(114, 114, 114);
+        }
+    }
+    &__block {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+    }
+    &__img {
+        display: block;
+        height: 40px;
+        width: 40px;
+        margin-right: 10px;
+    }
+}

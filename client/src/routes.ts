@@ -1,4 +1,5 @@
 import { LoginPage } from "./pages/LoginPage"
+import { ProductPage } from "./pages/ProductPage"
 import { ProductsPage } from "./pages/ProductsPage"
 import { RegistrationPage } from "./pages/RegistrationPage"
 
@@ -33,13 +34,13 @@ export const publicRoutes = [
     },
 
     {
-        path: PRODUCTS_ROUTE,
+        path: '/',
         Component: ProductsPage
     },
 
-    // {
-    //     path: PRODUCT_ROUTE + '/:id',
-    //     Component: Product
-    // },
+    {
+        path: PRODUCT_ROUTE + '/:id',
+        Component: ProductPage
+    },
 
 ]
