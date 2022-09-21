@@ -3,12 +3,12 @@ import { ProductPage } from "./pages/ProductPage"
 import { ProductsPage } from "./pages/ProductsPage"
 import { RegistrationPage } from "./pages/RegistrationPage"
 
-const REGISTRATION_ROUTE = '/registration'
-const LOGIN_ROUTE = '/login'
-const PRODUCTS_ROUTE = '/products'
-const PRODUCT_ROUTE = '/product'
-const BASKET_ROUTE = '/basket'
-const ADMIN_ROUTE = '/admin'
+export const REGISTRATION_ROUTE = '/registration'
+export const LOGIN_ROUTE = '/login'
+export const PRODUCTS_ROUTE = '/'
+export const PRODUCT_ROUTE = '/product'
+export const BASKET_ROUTE = '/basket'
+export const ADMIN_ROUTE = '/admin'
 
 
 export const authRoutes = [
@@ -34,7 +34,7 @@ export const publicRoutes = [
     },
 
     {
-        path: '/',
+        path: PRODUCTS_ROUTE,
         Component: ProductsPage
     },
 

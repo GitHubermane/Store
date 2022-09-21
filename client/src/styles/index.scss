@@ -33,11 +33,14 @@ table {
    border-spacing: 0;
 }
 input {
-   border: none;
    font-family: "Roboto", sans-serif;
+   border: none;
    &:focus-visible {
       outline: none;
    }
+}
+button {
+   font-family: "Roboto", sans-serif;
 }
 a {
    text-decoration: none;

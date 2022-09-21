@@ -1,60 +1,79 @@
-import { useFormik } from 'formik'
-import { Input } from '../components/Input/Input'
+import { Form, Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import * as Yup from 'yup'
+import { TextField } from '../components/TextField'
+import { useTypedDispatch } from '../hooks/TypedReduxHooks'
+import { registration } from '../Redux/ActionCreator/Auth.AC'
 
 export const RegistrationPage = () => {
 
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-            passwordCheck: '',
-            name: ''
-        },
-        onSubmit: values => {
-            if (values.password !== values.passwordCheck) {
-                
-            }
-        },
+    type initialValuesType = typeof initialValues
+    const initialValues = {
+        email: '',
+        password: '',
+        confirmPassword: '',
+    }
+    
+    const navigate = useNavigate()
+    
+    const dispatch = useTypedDispatch()
+    const handleOnSubmit = (values: initialValuesType) => {
+        dispatch(registration(values))
+        navigate('/login')
+    }
+
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email('Inalid email')
+            .required('Required'),
+        password: Yup.string()
+            .min(8, 'Too short')
+            .required('Required'),
+        confirmPassword: Yup.string()
+            .oneOf([Yup.ref('password'), null], 'Password must match')
+            .required('Required'),
     })
+
 
     return (
         <>
             <div>
-                <form
-                    className="Login__form"
-                    onSubmit={formik.handleSubmit}
+                <div className="Login__title">
+                    Registration
+                </div>
+                <Formik
+                    initialValues={initialValues}
+                    onSubmit={values => handleOnSubmit(values)}
+                    validationSchema={validationSchema}
                 >
-                    <div className="Login__title">
-                        Registration
-                    </div>
-                    <Input
-                        id='email'
-                        text='Email'
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                    />
-                    <Input
-                        id='name'
-                        text='Name'
-                        onChange={formik.handleChange}
-                        value={formik.values.name}
-                    />
-                    <Input
-                        id='password'
-                        text='Password'
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                    />
-                    <Input
-                        id='passwordCheck'
-                        text='Password'
-                        onChange={formik.handleChange}
-                        value={formik.values.passwordCheck}
-                    />
-                    <button type='submit'>
-                        
-                    </button>
-                </form>
+                    {props => (
+                        <>                            
+                            <Form
+                                className="Login__form"
+                                onSubmit={props.handleSubmit}
+                            >
+                                <TextField
+                                    name='email'
+                                    text='Email'
+                                />
+                                <TextField
+                                    name='password'
+                                    text='Password'
+                                    type='password'
+                                />
+                                <TextField
+                                    name='confirmPassword'
+                                    text='Confirm password'
+                                    type='password'
+                                />
+    
+                                <button type='submit'>
+                                    Submit
+                                </button>
+                            </Form>
+                        </>
+                    )}
+                </Formik>
             </div>
 
         </>

@@ -1,6 +1,9 @@
 .DropDown {
     position: absolute;
+    z-index: 100;
     top: 50px;
+    left: 50%;
+    transform: translate(-50%);
     width: 50%;
     padding: 10px;
     border-radius: 5px;

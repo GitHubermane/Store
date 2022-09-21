@@ -1,4 +1,3 @@
-import { LoginPage } from "../pages/LoginPage"
 import { Header } from "./Header"
 import { Route, Routes } from 'react-router-dom'
 import { publicRoutes } from "../routes"

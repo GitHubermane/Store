@@ -1,5 +1,5 @@
 $InpMainColour: #777;
-$InpErrColour: #e70000;
+$InpErrColour: #ad1212;
 $InpFocColour: #111;
 $InpFocBgColour: #555;
 
@@ -25,8 +25,8 @@ $InpFocBgColour: #555;
             color: $InpFocColour;
             background-color: $InpFocBgColour;
         }
-        &.error {
-            border-color: 2px solid InpMainColour;
+        &Error {
+            border-color: $InpErrColour;
         }
     }
 
@@ -34,14 +34,14 @@ $InpFocBgColour: #555;
         position: absolute;
         left: 10px;
         top: 8.5px;
-        padding: 0 2rem 0 5px ;
+        padding: 0 2rem 0 5px;
         color: $InpMainColour;
         cursor: text;
         transition: color 0.2s, width 0.1s ease-in 0.05s, top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
         background-color: #333;
 
-        &.error {
-            color: InpMainColour;
+        &Error {
+            color: $InpErrColour;
         }
     }
 
@@ -55,4 +55,12 @@ $InpFocBgColour: #555;
         font-weight: 600;
         color: $InpFocColour;
     }
+}
+
+.ErrorMessage {
+    display: inline-block;
+    align-self: start;
+    color: $InpErrColour;
+    margin: 0px 0 5px;
+    font-size: 12px;
 }

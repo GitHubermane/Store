@@ -1,0 +1,33 @@
+.Login {
+    &__title {
+        font-weight: 600;
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%;
+        margin: 80px auto;
+        padding: 60px 60px 30px;
+        background-color: #333;
+        border-radius: 10px;
+    }
+    &__btn {
+        cursor: pointer;
+        height: 30px;
+        width: 90px;
+        margin: 15px 0 0;
+        background-color: #777;
+        border: none;
+        border-radius: 15px;
+        font-weight: 600;
+        transition: all 0.3s;
+        &:hover {
+            color: #777;
+            background-color: #222;
+            transition: all 0.3s;
+        }
+    }
+}

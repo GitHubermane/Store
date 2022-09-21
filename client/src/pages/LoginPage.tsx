@@ -1,60 +1,22 @@
-import { useFormik } from 'formik'
-import { Input } from '../components/Input/Input';
-import '../styles/LoginPage.scss'
-import { useTypedDispatch, useTypedSelector } from '../hooks/TypedReduxHooks';
-import { login } from '../Redux/ActionCreator/Auth.AC';
+import { useTypedSelector } from '../hooks/TypedReduxHooks';
+import { LoginForm } from '../components/LoginForm';
+import { Navigate } from 'react-router-dom';
+import { PRODUCTS_ROUTE } from '../routes';
 
 
 export const LoginPage = () => {
-    const { userData, isLoading, error } = useTypedSelector(state => state.Auth)
-    const dispatch = useTypedDispatch()
+    const { isAuth } = useTypedSelector(state => state.Auth)
 
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: ''
-        },
-        onSubmit: values => {
-            dispatch(login(values))
-        },
-    })
+    // if (isAuth) (<Navigate to={PRODUCTS_ROUTE} />)
+    // else (<LoginForm/>)
+
     return (
         <>
             {
-                isLoading ?
+                isAuth ?
+                    <Navigate to={PRODUCTS_ROUTE}/> :
+                    <LoginForm/>
 
-                    <div>Loading</div> :
-
-                    <div>
-                        <form
-                            className="Login__form"
-                            onSubmit={formik.handleSubmit}
-                        >
-                            <div className="Login__title">
-                                Login
-                            </div>
-                            <Input
-                                id='email'
-                                text='Email'
-                                onChange={formik.handleChange}
-                                value={formik.values.email}
-                            />
-                            <Input
-                                id='password'
-                                text='Password'
-                                onChange={formik.handleChange}
-                                value={formik.values.password}
-                            />
-                            {
-                                error ?
-                                    <div>{error}</div> :
-                                    null
-                            }
-                            <button type='submit'>
-                                Click(kill) me please
-                            </button>
-                        </form>
-                    </div>
             }
         </>
     )

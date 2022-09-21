@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react"
-import { useTypedDispatch } from "../hooks/TypedReduxHooks";
+import { useTypedDispatch, useTypedSelector } from "../hooks/TypedReduxHooks";
 import { useDebounce } from "../hooks/useDebounce";
 import { fetchSerchedProducts } from "../Redux/ActionCreator/Products.AC";
 import { DropDown } from "./DropDown";
 import '../styles/Header.scss';
+import { NavLink } from "react-router-dom";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../routes";
+import { logout } from "../Redux/ActionCreator/Auth.AC";
 
 export const Header = () => {
     const [search, setSearch] = useState('')
     const [active, setActive] = useState(false)
 
+    const { isAuth, userData } = useTypedSelector(state => state.Auth)
     const dispatch = useTypedDispatch()
-
     const debounced = useDebounce(search)
 
     const onFocusHandler = () => {
         if (search) setActive(true)
     }
 
+    const onClickHandler = () => {
+        dispatch(logout())
+    }
     useEffect(() => {
         if (search) {
             dispatch(fetchSerchedProducts(debounced))
@@ -30,6 +36,7 @@ export const Header = () => {
         <div className='Header'>
             <div className='Header__wrapper'>
                 <div className='Header__logo'>
+                    Kek
                 </div>
                 <div className='Header__inputContainer'>
                     <input
@@ -37,11 +44,42 @@ export const Header = () => {
                         placeholder='Search'
                         value={search}
                         onChange={e => { setSearch(e.currentTarget.value) }}
-                        // onBlur={() => { setActive(false) }}
                         onFocus={onFocusHandler}
                     />
                 </div>
-                {active && <DropDown />}
+                {
+                    active &&
+                    <DropDown
+                        setActive={setActive}
+                        active={active}
+                    />
+                }
+                {
+                    !isAuth ?
+                        <div className='Header__btnBlock'>
+                            <NavLink
+                                className='Header__btn'
+                                to={LOGIN_ROUTE}
+                            >
+                                Login
+                            </NavLink>
+                            <NavLink
+                                className='Header__btn'
+                                to={REGISTRATION_ROUTE}
+                            >
+                                Registration
+                            </NavLink>
+                        </div> :
+                        <div style={{ color: '#fff' }}>
+                            {userData.email}
+                            <button
+                                className='Header__logoutBtn'
+                                onClick={onClickHandler}
+                            >
+                                Logout
+                            </button>
+                        </div>
+                }
             </div>
         </div>
     )

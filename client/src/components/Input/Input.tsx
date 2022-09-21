@@ -5,7 +5,8 @@ interface propsType extends React.DetailedHTMLProps<React.InputHTMLAttributes<HT
     text: string
     placeholder?: string
     value: string
-    id: string
+    name: string
+    error?: string
 }
 
 export const Input = (props: propsType) => {
@@ -13,17 +14,17 @@ export const Input = (props: propsType) => {
     return (
         <div className={style.Input}>
             <input
-                className={style.Input__input}
+                className={`${style.Input__input} ${props.error && style.Input__inputError}`}
                 type="text"
-                id={props.id}
-                name={props.id}
+                id={props.name}
+                name={props.name}
                 value={props.value}
                 onChange={props.onChange}
                 placeholder={props.placeholder || `Enter ${(props.text).toLowerCase()}`}
             />
             <label
-                className={style.Input__label}
-                htmlFor={props.id}
+                className={`${style.Input__label} ${props.error && style.Input__labelError}`}
+                htmlFor={props.name}
             >
                 {props.text}
             </label>

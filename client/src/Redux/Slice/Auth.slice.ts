@@ -1,14 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IUserData } from '../../models/IUserData'
-import { login } from '../ActionCreator/Auth.AC'
-
-type LoginStateType = typeof initialState
+import { IUser, IUserData } from '../../models/IUserData'
+import { check, login, logout, registration } from '../ActionCreator/Auth.AC'
 
 const initialState = {
-    userData: {
-        user: {},
-        tokens: {}
-    },
+    userData: {} as IUser,
     isAuth: false,
     isLoading: false,
     error: ''
@@ -19,13 +14,12 @@ export const AuthSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [login.fulfilled.type]: (state, action: PayloadAction<IUserData>) => {
-            let { userData } = state
+
+        [login.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
             state.error = ''
             state.isAuth = true
             state.isLoading = false
-            userData.user = action.payload.user
-            userData.tokens = action.payload.tokens
+            state.userData = action.payload
         },
 
         [login.pending.type]: (state) => {
@@ -36,6 +30,32 @@ export const AuthSlice = createSlice({
             state.isLoading = false 
             state.error = action.payload
         },
+
+        [logout.fulfilled.type]: (state) => {
+            state.isAuth = false
+            state.userData = {} as IUser
+        },
+        
+        [registration.fulfilled.type]: (state) => {
+            state.isAuth = false
+            state.userData = {} as IUser
+        },
+
+        [check.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+            state.isAuth = true
+            state.isLoading = false
+            state.userData = action.payload
+        },
+
+        [check.pending.type]: (state) => {
+            state.isLoading = true
+        },
+
+        [check.rejected.type]: (state, action: PayloadAction<string>) => {
+            state.isLoading = false
+            state.error = action.payload
+        },
+
     }
 
 })
