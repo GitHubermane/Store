@@ -41,7 +41,7 @@ class UserService {
         const createdUser: any = await Models.User.create({ email, password: hashPassword, activationLink, role:'USER' })
         await Models.Basket.create({ userId: createdUser.id })
 
-        await MailService.sendActiveMail(email, `${process.env.API_URL}/api/user/activate/${activationLink}`)
+        await MailService.sendActiveMail(email, `http://localhost:${process.env.PORT}/api/user/activate/${activationLink}`)
 
         return generateJWT(createdUser)
 

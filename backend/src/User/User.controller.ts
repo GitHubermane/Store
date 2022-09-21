@@ -23,8 +23,8 @@ export const UserController = {
     async activate(req: Request, res: Response, next: NextFunction) {
         try {
             const activationLink = req.params.link
-            const user = await UserService.activate(activationLink)
-            return res.json({ user })
+            const userData = await UserService.activate(activationLink)
+            return res.json({ userData })
         } catch (error) {
             next(error)
         }
@@ -33,9 +33,9 @@ export const UserController = {
     async login(req: Request, res: Response, next: NextFunction) {
         try {
             const { email, password } = req.body
-            const user: any = await UserService.login(email, password)
-            res.cookie('refreshToken', user.tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
-            return res.json({ user })
+            const userData: any = await UserService.login(email, password)
+            res.cookie('refreshToken', userData.tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+            return res.json({ userData })
         } catch (error) {
             next(error)
         }
@@ -44,8 +44,9 @@ export const UserController = {
     async refresh(req: any, res: Response, next: NextFunction) {
         try {
             const { refreshToken } = req.cookies
-            const user = await UserService.refresh(refreshToken)
-            return res.json({user})
+            const userData = await UserService.refresh(refreshToken)
+            res.cookie('refreshToken', userData.tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+            return res.json({userData})
         } catch (error) {
             next(error) 
         }
