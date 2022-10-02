@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express'
-import { Models } from '../models/models'
 import UserService from './User.service'
 import { validationResult } from 'express-validator'
 import { ApiError } from '../error/ApiError'
@@ -33,7 +32,7 @@ export const UserController = {
     async login(req: Request, res: Response, next: NextFunction) {
         try {
             const { email, password } = req.body
-            const userData: any = await UserService.login(email, password)
+            const userData = await UserService.login(email, password)
             res.cookie('refreshToken', userData.tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
             return res.json({ userData })
         } catch (error) {
@@ -41,18 +40,18 @@ export const UserController = {
         }
     },
 
-    async refresh(req: any, res: Response, next: NextFunction) {
+    async refresh(req: Request, res: Response, next: NextFunction) {
         try {
             const { refreshToken } = req.cookies
             const userData = await UserService.refresh(refreshToken)
-            res.cookie('refreshToken', userData.tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+            res.cookie('refreshToken', userData?.tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
             return res.json({userData})
         } catch (error) {
             next(error) 
         }
     },
 
-    async logout(req: any, res: Response, next: NextFunction) {
+    async logout(req: Request, res: Response, next: NextFunction) {
         try {
             const { refreshToken } = req.cookies
             await UserService.logout(refreshToken)
@@ -63,7 +62,7 @@ export const UserController = {
         }
     },
 
-    async getAll(req: any, res: Response, next: NextFunction) {
+    async getAll(req: Request, res: Response, next: NextFunction) {
         try {
             const users = await UserService.getAll()
             return res.json(users)

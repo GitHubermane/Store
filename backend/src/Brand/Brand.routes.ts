@@ -4,7 +4,9 @@ import { CheckRoleMiddleware } from "../middleware/CheckRoleMiddleware";
 
 const router = Router()
 
-router.post('/', CheckRoleMiddleware('ADMIN'), BrandController.create)
+// router.post('/', CheckRoleMiddleware('ADMIN'), BrandController.create)
+router.post('/', BrandController.create)
+
 router.get('/', BrandController.getAll)
 
 export default router

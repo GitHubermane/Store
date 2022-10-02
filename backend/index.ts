@@ -8,6 +8,7 @@ import { errorHandler } from "./src/middleware/ErrorHandleMiddleware"
 import chalk from "chalk"
 import path from "path"
 import cookieParser from "cookie-parser"
+
 const app = express()
 const PORT = process.env.PORT || 5100
 
@@ -29,7 +30,6 @@ const start = async () => {
         await sequelize.sync()        
         console.log(chalk.hex('#05fa0d')('Successful conection to data base'));
         app.listen(PORT, () => { console.log(chalk.hex('#05fa0d')(`Server has been started on port ${PORT}`)) })
-
     }
     catch (e) {
         console.log(e);

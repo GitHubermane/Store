@@ -1,14 +1,14 @@
-import { Models } from "../models/models"
+import { Type } from "./Type.model"
 
 class TypeService {
     async create(type: { name: string }) {
-        const createdType = await Models.Type.create(type)
+        const createdType = await Type.create(type)
         return createdType
 
     }
 
     async getAll() {
-        const types = await Models.Type.findAll()
+        const types = await Type.findAll()
         return types
     }
 }

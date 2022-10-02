@@ -21,6 +21,6 @@
   },
   "include": [
     "src/**/*"
-, "src/db.ts", "src/models/index.ts"  ],
+, "src/db.ts", "src/assotiations/index.ts"  ],
   "typescript.disableAutomaticTypeAcquisition": true,
 }

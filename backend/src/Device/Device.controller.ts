@@ -3,24 +3,10 @@ import { ApiError } from '../error/ApiError'
 import { UploadedFile } from 'express-fileupload'
 import DeviceService from './Device.service'
 
-type DeviceInfoType = {
-    id: number
-    title: string
-    describe: string
-}
-type DeviceType = {
-    id: number
-    brandId: number
-    typeId: number
-    name: string
-    price: number
-    img: string
-    rating: number
-}
 export const DeviceController = {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const device: any = await DeviceService.create(req.body, req.files?.img as UploadedFile)
+            const device = await DeviceService.create(req.body, req.files?.img as UploadedFile)
             return res.json(device)
         } catch (error: any) {
             next(ApiError.badRequest(error.message))
@@ -48,7 +34,7 @@ export const DeviceController = {
 
     async deleteOne(req: Request, res: Response) {
         try {
-            const device = await DeviceService.deleteOne(req.params.id)
+            await DeviceService.deleteOne(req.params.id)
             return res.json({ message: "Device deleted" })
         } catch (error: any) {
             return res.json(error.message)
@@ -57,7 +43,7 @@ export const DeviceController = {
 
     async deleteAll(req: Request, res: Response) {
         try {
-            const devices = await DeviceService.deleteAll()
+            await DeviceService.deleteAll()
             return res.json({ message: "All devices deleted" })
         } catch (error) {
             return res.json(error)

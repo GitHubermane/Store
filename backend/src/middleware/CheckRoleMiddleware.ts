@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { roleType } from "../User/User.controller";
 import { ApiError } from "../error/ApiError";
-import TokenService from "../service/Token.service";
+import TokenService from "../Token/Token.service";
 
 
 //   Убрать в отдельный файл с типами

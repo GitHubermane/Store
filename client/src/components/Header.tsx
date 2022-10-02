@@ -5,7 +5,7 @@ import { fetchSerchedProducts } from "../Redux/ActionCreator/Products.AC";
 import { DropDown } from "./DropDown";
 import '../styles/Header.scss';
 import { NavLink } from "react-router-dom";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../routes";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, PRODUCTS_ROUTE } from "../routes";
 import { logout } from "../Redux/ActionCreator/Auth.AC";
 
 export const Header = () => {
@@ -36,7 +36,9 @@ export const Header = () => {
         <div className='Header'>
             <div className='Header__wrapper'>
                 <div className='Header__logo'>
-                    Kek
+                    <NavLink to={PRODUCTS_ROUTE}>
+                        Kek
+                    </NavLink>
                 </div>
                 <div className='Header__inputContainer'>
                     <input

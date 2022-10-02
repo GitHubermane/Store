@@ -9,13 +9,4 @@ export const sequelize = new Sequelize(
         host: String(process.env.DB_HOST),
         port: Number(process.env.DB_PORT)
     }
-
-    // 'online_store',
-    // 'postgres',
-    // 'root',
-    // {
-    //     dialect: 'postgres',
-    //     host: 'localhost',
-    //     port: 5432
-    // }
 )

@@ -1,7 +1,5 @@
 import nodemailer from "nodemailer"
 import SMTPTransport from "nodemailer/lib/smtp-transport"
-import { ApiError } from "../error/ApiError"
-import { Models } from "../models/models"
 
 class MailService {
     transporter
@@ -16,22 +14,20 @@ class MailService {
         } as SMTPTransport.Options)
     }
     async sendActiveMail(email: string, link: string) {
+
         await this.transporter.sendMail({
-            from: `"Проверка"<${process.env.SMTP_USER}>`,
+            from: `"Проверка" < ${process.env.SMTP_USER}> `,
             to: email,
-            subject: `Активация аккаунта на ${process.env.API_URL}`,
+            subject: `Активация аккаунта на ${process.env.API_URL} `,
             text: 'Проверка',
             html:
                 `
                 <div>
-                <h1>Попытка изучитьBackend</h1>
-                    <p>Су!!! Это не спам<p>
-                    <a href=${link}>${link}</a>
-
+                    <h1>Попытка изучить < /h1>
+                    <a href = ${link}> ${link} </a>
                 </div>
                 `
         })
     }
-
 }
 export default new MailService()

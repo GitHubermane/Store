@@ -1,13 +1,13 @@
-import { Models } from "../models/models"
+import { Brand } from "./Brand.model"
 
 class BrandService {
     async create(brand: { name: string }) {
-        const createdBrand = await Models.Brand.create(brand)
+        const createdBrand = await Brand.create(brand)
         return createdBrand
     }
 
     async getAll() {
-        const brands = await Models.Brand.findAll()
+        const brands = await Brand.findAll()
         return brands
     }
 }

@@ -2,35 +2,20 @@ import { UploadedFile } from "express-fileupload"
 import path from "path"
 import fs from "fs"
 import { v4 } from "uuid"
-import { Models } from "../models/models"
 import { ApiError } from "../error/ApiError"
 import { Op } from "sequelize"
+import { Device, DeviceInfo } from "./Device.model"
 
-type DeviceType = {
-    id: number
-    brandId: number
-    typeId: number
-    name: string
-    price: number
-    img: string
-    rating: number
-    info: any
-}
-type DeviceInfoType = {
-    id: number
-    title: string
-    describe: string
-}
 class DeviceService {
-    async create(device: DeviceType, file: UploadedFile) {
+    async create(device: Device, file: UploadedFile) {
         if (!file) throw ApiError.badRequest('Изображение необходимо')
         let filename = v4() + '.jpg'
         file.mv(path.resolve(__dirname, '..', 'static', filename))
-        const createdDevice: any = await Models.Device.create({ ...device, img: filename })
+        const createdDevice = await Device.create({ ...device, img: filename })
         if (device.info) {
-            device.info = JSON.parse(device.info)
-            device.info.forEach((i: DeviceInfoType) => {
-                Models.DeviceInfo.create({
+            device.info = JSON.parse(String(device.info))
+            device.info.forEach((i: DeviceInfo) => {
+                DeviceInfo.create({
                     id: createdDevice.id,
                     title: i.title,
                     describe: i.describe
@@ -48,39 +33,38 @@ class DeviceService {
         let devices
         if (!brandId && !typeId) {
             if (name) {
-                return devices = await Models.Device.findAndCountAll({ where: { name: { [Op.startsWith]: name }} })
+                return devices = await Device.findAndCountAll({ where: { name: { [Op.startsWith]: String(name) } } })
             }
-            devices = await Models.Device.findAndCountAll({ limit, offset })
+            devices = await Device.findAndCountAll({ limit, offset })
         }
-        if (brandId && !typeId) devices = await Models.Device.findAndCountAll({ where: { brandId }, limit, offset })
-        if (!brandId && typeId) devices = await Models.Device.findAndCountAll({ where: { typeId }, limit, offset })
-        if (brandId && typeId) devices = await Models.Device.findAndCountAll({ where: { brandId, typeId }, limit, offset })
+        if (brandId && !typeId) devices = await Device.findAndCountAll({ where: { brandId: Number(brandId) }, limit, offset })
+        if (!brandId && typeId) devices = await Device.findAndCountAll({ where: { typeId: Number(typeId) }, limit, offset })
+        if (brandId && typeId) devices = await Device.findAndCountAll({ where: { brandId: Number(brandId), typeId: Number(typeId) }, limit, offset })
+
         return devices
     }
 
     async getOne(id: string) {
-        const device = await Models.Device.findOne({
+        const device = await Device.findOne({
             where: { id },
-            include: [{ model: Models.DeviceInfo, as: 'info' }]
+            include: [{ model: DeviceInfo, as: 'info' }]
         })
+
         return device
     }
 
     async deleteOne(id: string) {
-        let device = await Models.Device.findOne({
-            where: { id },
-        }) as any
+        let device = await Device.findOne({ where: { id } })
         fs.unlink(`${__dirname}/../static/${device?.img}`, err => {
             if (err) throw err
         })
-        await Models.Device.destroy({
-            where: { id },
-        })
+        await Device.destroy({ where: { id } })
+
         return device
     }
 
     async deleteAll() {
-        const devices = await Models.Device.destroy({
+        const devices = await Device.destroy({
             cascade: true,
             truncate: true,
             force: true
@@ -88,14 +72,15 @@ class DeviceService {
         const directory = `${__dirname}/../static/`
 
         fs.readdir(directory, (err, files) => {
-            if (err) throw err;
+            if (err) throw err
 
             for (const file of files) {
                 fs.unlink(path.join(directory, file), err => {
                     if (err) throw err;
                 });
             }
-        });
+        })
+
         return devices
     }
 }

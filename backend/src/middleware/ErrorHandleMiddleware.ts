@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { ApiError, ApiErrorType } from "../error/ApiError"
+import { ApiError } from "../error/ApiError"
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
     console.log(err);

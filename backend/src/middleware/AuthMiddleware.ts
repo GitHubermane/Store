@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { ApiError } from "../error/ApiError";
-import TokenService from "../service/Token.service";
+import TokenService from "../Token/Token.service";
 
 export const AuthMiddleware = async (req: any, res: Response, next: NextFunction) => {
     if (req.method === 'OPTIONS') {
