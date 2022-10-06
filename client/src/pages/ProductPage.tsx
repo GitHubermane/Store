@@ -1,26 +1,55 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { Loader } from "../components/Loader"
+import { SERVER_URL } from "../env"
 import { useTypedDispatch, useTypedSelector } from "../hooks/TypedReduxHooks"
-import { usePrevious } from "../hooks/usePrevious"
+import { addToCart } from "../Redux/ActionCreator/Cart.AC"
 import { fetchProduct } from "../Redux/ActionCreator/Product.AC"
-import { ProductReducer } from "../Redux/Slice/Product.slice"
+import '../styles/pages/ProductPage.scss'
 
-export const ProductPage = (props: any) => {
-    const { product, isLoading, error } = useTypedSelector(state => state.Product)
+export const ProductPage = () => {
+    const { product, isLoading } = useTypedSelector(state => state.Product)
     const dispatch = useTypedDispatch()
     const { id } = useParams()
-    
-    useEffect(() => { 
-            dispatch(fetchProduct(Number(id)))
+
+    const onClickHandler = (id: number) => {
+        dispatch(addToCart(id))
+    }
+
+    useEffect(() => {
+        dispatch(fetchProduct(Number(id)))
     }, [])
-    
+
     return (
         <>
-            <div>
-                <div>{product.name}</div>
-                <div>{product.id}</div>
-                <div>{product.price}</div>
-            </div>
+            {
+                isLoading ?
+                    <Loader /> :
+
+                    <div className='ProductPage'>
+                        <div className='ProductPage__title'>
+                            {product.name}
+                        </div>
+                        <div className='ProductPage__block'>
+                            {
+                                product.img &&
+                                <img
+                                    className='ProductPage__img'
+                                    src={`${SERVER_URL}/${product.img}`}
+                                />
+                            }
+                            <div className='ProductPage__price'>
+                                {product.price} &#x20bd;
+                            </div>
+                            <button
+                                onClick={() => { onClickHandler(Number(id)) }}
+                            >
+                                Добавить в корзину
+                            </button>
+
+                        </div>
+                    </div>
+            }
         </>
     )
 

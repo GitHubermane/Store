@@ -4,7 +4,6 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 15px;
         padding: 20px;
-        background-color: #222;
     }
 }
 .Card {
@@ -16,8 +15,8 @@
     &__img {
         margin: 0 auto;
         display: block;
-        width: 300px;
-        height: 300px;
+        width: 12em;
+        height: 12em;
     }
     &__infoBlock {
         margin-top: 15px;

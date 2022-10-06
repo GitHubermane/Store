@@ -1,0 +1,25 @@
+.ProductPage {
+    width: 80%;
+    margin: 0 auto;
+    color: #fff;
+    &__title {
+        font-weight: 500;
+        font-size: 27px;
+        padding: 0 0 0.5em;
+        border-bottom: 1px solid #666;
+    }
+    &__img {
+        height: 16em;
+        width: 16em;
+        margin: 1.5em 0 0;
+        border-radius: 1em;
+    }
+    &__block {
+        display: flex;
+        align-items: flex-start;
+    }
+    &__price {
+        margin: 1em 1em 0;
+        font-size: 20px;
+    }
+}

@@ -6,7 +6,8 @@ $InpFocBgColour: #555;
 .Input {
     position: relative;
     margin: 7px 0;
-
+    z-index: 0;
+    
     &__input {
         position: relative;
         top: 0;
@@ -15,7 +16,7 @@ $InpFocBgColour: #555;
         border-radius: 7px;
         color: $InpMainColour;
         outline: none;
-        padding: 7px 15px;
+        padding: 0.5em 1em;
         background: none;
         transition: all 0.2s;
 
@@ -32,8 +33,9 @@ $InpFocBgColour: #555;
 
     &__label {
         position: absolute;
-        left: 10px;
-        top: 8.5px;
+        z-index: 0;
+        left: 0.5em;
+        top: 0.5em;
         padding: 0 2rem 0 5px;
         color: $InpMainColour;
         cursor: text;
@@ -42,6 +44,21 @@ $InpFocBgColour: #555;
 
         &Error {
             color: $InpErrColour;
+        }
+    }
+
+    &__visibleBtn {
+        cursor: pointer;
+        position: absolute;
+        right: 0.5em;
+        top: 50%;
+        padding: 0.15em;
+        border-radius: 50%;
+        line-height: 0;
+        color: $InpMainColour;
+        transform: translate(0, -50%);
+        &:hover {
+            background-color: rgba(#000000, .2);
         }
     }
 
@@ -59,8 +76,8 @@ $InpFocBgColour: #555;
 
 .ErrorMessage {
     display: inline-block;
+    margin: 0px auto 5px;
     align-self: start;
     color: $InpErrColour;
-    margin: 0px 0 5px;
     font-size: 12px;
 }

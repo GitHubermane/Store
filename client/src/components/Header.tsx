@@ -5,7 +5,7 @@ import { fetchSerchedProducts } from "../Redux/ActionCreator/Products.AC";
 import { DropDown } from "./DropDown";
 import '../styles/Header.scss';
 import { NavLink } from "react-router-dom";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, PRODUCTS_ROUTE } from "../routes";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, PRODUCTS_ROUTE, CART_ROUTE, FAVORITE_ROUTE } from "../routes";
 import { logout } from "../Redux/ActionCreator/Auth.AC";
 
 export const Header = () => {
@@ -23,6 +23,7 @@ export const Header = () => {
     const onClickHandler = () => {
         dispatch(logout())
     }
+
     useEffect(() => {
         if (search) {
             dispatch(fetchSerchedProducts(debounced))
@@ -49,6 +50,7 @@ export const Header = () => {
                         onFocus={onFocusHandler}
                     />
                 </div>
+
                 {
                     active &&
                     <DropDown
@@ -72,8 +74,23 @@ export const Header = () => {
                                 Registration
                             </NavLink>
                         </div> :
-                        <div style={{ color: '#fff' }}>
+
+                        <div className='Header__btnBlock'>
+
+                            <NavLink to={FAVORITE_ROUTE}>
+                                <span className="material-symbols-outlined Header__favBtn">
+                                    favorite
+                                </span>
+                            </NavLink>
+                            
+                            <NavLink to={CART_ROUTE}>
+                                <span className="material-symbols-outlined Header__cartBtn">
+                                    shopping_cart
+                                </span>
+                            </NavLink>
+
                             {userData.email}
+
                             <button
                                 className='Header__logoutBtn'
                                 onClick={onClickHandler}

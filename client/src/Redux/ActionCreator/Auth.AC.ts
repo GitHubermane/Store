@@ -49,7 +49,6 @@ export const check = createAsyncThunk(
         try {
             const response = await authService.check()
             localStorage.setItem('token', response.data.userData.tokens.accessToken)
-            console.log(response.data);
             
             return response.data.userData.user
         } catch (error: any) {

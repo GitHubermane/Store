@@ -7,17 +7,19 @@ export const AppRouter = () => {
     return (
         <>
             <Header />
-            <Routes>
-                {
-                    publicRoutes.map(({ path, Component }) => (
-                        <Route
-                            key={path}
-                            path={path}
-                            element={<Component />}
-                        />
-                    ))
-                }
-            </Routes>
+            <div className='container'>
+                <Routes>
+                    {
+                        publicRoutes.map(({ path, Component }) => (
+                            <Route
+                                key={path}
+                                path={path}
+                                element={<Component />}
+                            />
+                        ))
+                    }
+                </Routes>
+            </div>
         </>
     )
 }

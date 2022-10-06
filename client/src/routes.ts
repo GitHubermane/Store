@@ -1,3 +1,5 @@
+import { CartPage } from "./pages/CartPage"
+import { FavoritePage } from "./pages/FavoritePage"
 import { LoginPage } from "./pages/LoginPage"
 import { ProductPage } from "./pages/ProductPage"
 import { ProductsPage } from "./pages/ProductsPage"
@@ -7,8 +9,10 @@ export const REGISTRATION_ROUTE = '/registration'
 export const LOGIN_ROUTE = '/login'
 export const PRODUCTS_ROUTE = '/'
 export const PRODUCT_ROUTE = '/product'
-export const BASKET_ROUTE = '/basket'
+export const CART_ROUTE = '/cart'
+export const FAVORITE_ROUTE = '/favorite'
 export const ADMIN_ROUTE = '/admin'
+
 
 
 export const authRoutes = [
@@ -18,8 +22,13 @@ export const authRoutes = [
     // },
 
     // {
-    //     path: BASKET_ROUTE,
-    //     Component: Basket
+    //     path: CART_ROUTE,
+    //     Component: Cart
+    // },
+
+    // {
+    //     path: FAVORITE_ROUTE,
+    //     Component: FavoritePage
     // }
 ]
 export const publicRoutes = [
@@ -43,4 +52,13 @@ export const publicRoutes = [
         Component: ProductPage
     },
 
+    {
+        path: CART_ROUTE,
+        Component: CartPage
+    },
+
+    {
+        path: FAVORITE_ROUTE,
+        Component: FavoritePage
+    }
 ]

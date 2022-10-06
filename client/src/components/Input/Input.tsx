@@ -1,3 +1,4 @@
+import { useState } from 'react';
 //@ts-ignore
 import style from './Input.module.scss'
 
@@ -7,15 +8,21 @@ interface propsType extends React.DetailedHTMLProps<React.InputHTMLAttributes<HT
     value: string
     name: string
     error?: string
+    type: string
 }
 
 export const Input = (props: propsType) => {
+
+    const [isVisible, setVisible] = useState(false)
+    const onClickHandler = () => {
+        setVisible(!isVisible)
+    }
 
     return (
         <div className={style.Input}>
             <input
                 className={`${style.Input__input} ${props.error && style.Input__inputError}`}
-                type="text"
+                type={isVisible ? 'text' : props.type}
                 id={props.name}
                 name={props.name}
                 value={props.value}
@@ -28,6 +35,24 @@ export const Input = (props: propsType) => {
             >
                 {props.text}
             </label>
+
+            {
+                props.type === 'password' &&
+                <button
+                    className={style.Input__visibleBtn}
+                    onClick={onClickHandler}
+                    type='button'
+                >
+                    {isVisible ?
+                        <span className="material-symbols-outlined">
+                            visibility_off
+                        </span> :
+                        <span className="material-symbols-outlined">
+                            visibility
+                        </span>
+                    }
+                </button>
+            }
         </div>
 
     )

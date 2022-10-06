@@ -32,6 +32,9 @@ table {
    border-collapse: collapse;
    border-spacing: 0;
 }
+img {
+   display: inline-block;
+}
 input {
    font-family: "Roboto", sans-serif;
    border: none;
@@ -40,9 +43,20 @@ input {
    }
 }
 button {
+   cursor: pointer;
    font-family: "Roboto", sans-serif;
+   background-color: rgba(0, 0, 0, 0);
+   border: none;
 }
 a {
    text-decoration: none;
    color: #000;
+}
+#root {
+   height: 100%;
+}
+.container {
+   min-height: 100%;
+   padding-top: 5em;
+   background-color: #333;
 }

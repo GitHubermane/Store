@@ -5,7 +5,8 @@ $Width: 90%;
 
 .Header {
    width: 100%;
-   position: sticky;
+   position: fixed;
+   z-index: 100;
    background-color: $Colour1;
    padding: 15px 0;
    color: #fff;
@@ -35,7 +36,10 @@ $Width: 90%;
          transition: all 0.2s;
       }
    }
-
+   &__btnBlock {
+      display: flex;
+      align-items: center;
+   }
    &__btn {
       cursor: pointer;
       padding: 3px 10px;
@@ -51,6 +55,12 @@ $Width: 90%;
          background-color: $Colour2;
          transition: all 0.3s;
       }
+   }
+
+   &__cartBtn, &__favBtn {
+      margin: 0 0.2em;
+      line-height: 1;
+      color: #fff;
    }
    &__logoutBtn {
       cursor: pointer;

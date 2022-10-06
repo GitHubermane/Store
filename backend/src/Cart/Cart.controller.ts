@@ -14,11 +14,11 @@ export const CartController = {
         }
     },
 
-    async addOne(req: Request, res: Response, next: NextFunction) {
+    async addToCart(req: Request, res: Response, next: NextFunction) {
         try {
             const { refreshToken } = req.cookies
-            const { deviceId } = req.body
-            const device = await CartService.addOne(refreshToken, deviceId)
+            const { id } = req.params
+            const device = await CartService.addToCart(refreshToken, id)
 
             return res.json(device)
         } catch (error: any) {
@@ -29,8 +29,9 @@ export const CartController = {
     async changeQuantity(req: Request, res: Response, next: NextFunction) {
         try {
             const { refreshToken } = req.cookies
-            const { deviceId, quantity } = req.body
-            const device = await CartService.changeQuantity(refreshToken, deviceId, quantity)
+            const { id } = req.params
+            const { quantity } = req.body
+            const device = await CartService.changeQuantity(refreshToken, id, quantity)
 
             return res.json(device)
         } catch (error: any) {
@@ -41,8 +42,8 @@ export const CartController = {
     async deleteOne(req: Request, res: Response, next: NextFunction) {
         try {
             const { refreshToken } = req.cookies
-            const { deviceId } = req.body
-            const device = await CartService.deleteOne(refreshToken, deviceId)
+            const { id } = req.params
+            const device = await CartService.deleteOne(refreshToken, id)
 
             return res.json(device)
         } catch (error: any) {

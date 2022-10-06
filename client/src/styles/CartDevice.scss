@@ -1,0 +1,38 @@
+.CartDevice {
+
+    &__block {
+        display: flex;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+        padding: 0.5em 1em;
+        border-bottom: 0.1em solid #ddd;
+    }
+    &__img {
+        height: 4em;
+        width: 4em;
+    }
+    &__name {
+        margin: 0 1em;
+    }
+    &__price {
+        margin: 0 1em;
+        font-weight: 600;
+    }
+    &__quantityInput {
+        width: 3em;
+    }
+    &__delBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 2.5em;
+        width: 2.5em;
+        line-height: 1;
+        border-radius: 1.25em;
+        color: #555;
+        &:hover {
+            color: #000;
+        }
+    }
+}
