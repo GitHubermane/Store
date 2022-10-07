@@ -76,7 +76,6 @@ export const Header = () => {
                         </div> :
 
                         <div className='Header__btnBlock'>
-
                             <NavLink to={FAVORITE_ROUTE}>
                                 <span className="material-symbols-outlined Header__favBtn">
                                     favorite

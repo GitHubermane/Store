@@ -6,23 +6,3 @@
         padding: 20px;
     }
 }
-.Card {
-    &__wrapper {
-        background-color: #fff;
-        padding: 10px;
-        border-radius: 15px;
-    }
-    &__img {
-        margin: 0 auto;
-        display: block;
-        width: 12em;
-        height: 12em;
-    }
-    &__infoBlock {
-        margin-top: 15px;
-    }
-    &__name {
-        font-size: 24px;
-        font-weight: 600;
-    }
-}

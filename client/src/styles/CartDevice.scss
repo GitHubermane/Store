@@ -2,12 +2,18 @@
 
     &__block {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         width: 90%;
         margin: 0 auto;
         padding: 0.5em 1em;
         border-bottom: 0.1em solid #ddd;
     }
+    &__infoBlock, &__navLink {
+        display: flex;
+        align-items: center;
+    }
+
     &__img {
         height: 4em;
         width: 4em;

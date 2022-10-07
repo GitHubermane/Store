@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Loader } from "../components/Loader"
 import { SERVER_URL } from "../env"
@@ -20,6 +20,14 @@ export const ProductPage = () => {
         dispatch(fetchProduct(Number(id)))
     }, [])
 
+
+
+    const [fav, setFav] = useState(false)
+    const onAddToFavClick = () => {
+        setFav(!fav)
+    }
+
+
     return (
         <>
             {
@@ -27,8 +35,18 @@ export const ProductPage = () => {
                     <Loader /> :
 
                     <div className='ProductPage'>
-                        <div className='ProductPage__title'>
-                            {product.name}
+                        <div className='ProductPage__titleBlock'>
+                            <div className='ProductPage__title'>
+                                {product.name}
+                            </div>
+                            <button
+                                className='ProductPage__favBtn'
+                                onClick={onAddToFavClick}
+                            >
+                                <span className={`material-symbols-outlined ${fav ? 'fillBtn' : ''}`}>
+                                    favorite
+                                </span>
+                            </button>
                         </div>
                         <div className='ProductPage__block'>
                             {
@@ -38,14 +56,17 @@ export const ProductPage = () => {
                                     src={`${SERVER_URL}/${product.img}`}
                                 />
                             }
-                            <div className='ProductPage__price'>
-                                {product.price} &#x20bd;
+                            <div className='ProductPage__infoBlock'>
+                                <div className='ProductPage__price'>
+                                    {product.price} &#x20bd;
+                                </div>
+                                <button
+                                    className='ProductPage__addBtn'
+                                    onClick={() => { onClickHandler(Number(id)) }}
+                                >
+                                    Добавить в корзину
+                                </button>
                             </div>
-                            <button
-                                onClick={() => { onClickHandler(Number(id)) }}
-                            >
-                                Добавить в корзину
-                            </button>
 
                         </div>
                     </div>

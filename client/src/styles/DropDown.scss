@@ -17,11 +17,16 @@
         margin: 5px 10px;
         border-radius: 10px;
         &:hover {
-            background-color: rgb(114, 114, 114);
+            background-color: #999999;
         }
     }
+    &__navLink {
+        width: 100%;
+    }
     &__block {
+        width: 100%;
         display: flex;
+        justify-content: space-between;
         align-items: center;
         font-weight: 500;
     }
@@ -29,6 +34,23 @@
         display: block;
         height: 40px;
         width: 40px;
+        border-radius: 0.3em;
         margin-right: 10px;
+    }
+    &__nameNImg {
+        display: flex;
+        align-items: center;
+    }
+    &__price {
+        font-size: 14px;
+        font-weight: 400;
+    }
+    &__addBtn {
+        margin: 0 0 0 0.3em;
+        transition: 0.2s;
+        &:hover {
+            color: #fff;
+            transition: 0.2s;
+        }
     }
 }

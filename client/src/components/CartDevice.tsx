@@ -21,8 +21,8 @@ export const CartDevice = (props: { device: ICartDeviceData }) => {
     // }
 
     const onChangeQuantity = async (id: number, quantity: number) => {
-            await dispatch(changeQuantity({ id, quantity }))
-            dispatch(getCart())
+        await dispatch(changeQuantity({ id, quantity }))
+        dispatch(getCart())
 
         return null
     }
@@ -35,17 +35,22 @@ export const CartDevice = (props: { device: ICartDeviceData }) => {
     return (
         <div className='CartDevice'>
             <div className='CartDevice__block'>
-                <NavLink to={`/product/${props.device.deviceId}`}>
-                    <img
-                        className='CartDevice__img'
-                        src={`${SERVER_URL}/${props.device.img}`}
-                    />
-                </NavLink>
-                <div className='CartDevice__name'>
-                    {props.device.name}
-                </div>
-                <div className='CartDevice__price'>
-                    {props.device.price * props.device.quantity} &#x20bd;
+                <div className='CartDevice__infoBlock'>
+                    <NavLink
+                        className='CartDevice__navLink'
+                        to={`/product/${props.device.deviceId}`}
+                    >
+                        <img
+                            className='CartDevice__img'
+                            src={`${SERVER_URL}/${props.device.img}`}
+                        />
+                        <div className='CartDevice__name'>
+                            {props.device.name}
+                        </div>
+                    </NavLink>
+                    <div className='CartDevice__price'>
+                        {props.device.price * props.device.quantity} &#x20bd;
+                    </div>
                 </div>
 
                 <input

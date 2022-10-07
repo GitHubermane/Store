@@ -4,7 +4,7 @@ import { ICart } from '../../models/ICartData'
 
 export default class cartService {
     static async getCart(): Promise<AxiosResponse<ICart>> {
-        return $api.get<ICart>('/cart/')
+        return $api.get<ICart>('/cart')
     }
 
     static async addToCart(id: number): Promise<AxiosResponse<any>> {

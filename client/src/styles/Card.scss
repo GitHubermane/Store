@@ -1,0 +1,39 @@
+.Card {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+
+    &__img {
+        margin: 0 auto;
+        display: block;
+        width: 12em;
+        height: 12em;
+    }
+    &__infoBlock {
+        margin-top: 15px;
+    }
+    &__nameBlock {
+        font-size: 24px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__addBtn {
+        height: 2em;
+        margin: 1em 0 0;
+        padding: 0 1em;
+        font-weight: 500;
+        border-radius: 1em;
+        color: #000;
+        background-color: #ddd;
+        &:hover {
+            color: #fff;
+            background-color: #333;
+        }
+    }
+}
+
+.fillBtn {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+}

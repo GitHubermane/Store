@@ -8,9 +8,9 @@ export const CartPage = () => {
     const dispatch = useTypedDispatch()
     const { devices } = useTypedSelector(state => state.Cart)
 
-    useEffect(() => {
-        dispatch(getCart())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getCart())
+    // }, [])
 
     return (
         <div className='CartPage'>
@@ -25,7 +25,7 @@ export const CartPage = () => {
                     ))
                 }
 
-                <div className='CartPage__wrapper'>
+                <div className='CartPage__total'>
                     
                 </div>
             </div>

@@ -1,12 +1,22 @@
+$btnHeight: 2.5em;
+
 .ProductPage {
     width: 80%;
     margin: 0 auto;
     color: #fff;
+    &__titleBlock {
+        display: flex;
+        align-items: center;
+        padding: 0 0 0.5em;
+        border-bottom: 1px solid #666;
+    }
     &__title {
         font-weight: 500;
         font-size: 27px;
-        padding: 0 0 0.5em;
-        border-bottom: 1px solid #666;
+    }
+    &__favBtn {
+        margin: 0 0 0 2em;
+        color: #fff;
     }
     &__img {
         height: 16em;
@@ -22,4 +32,25 @@
         margin: 1em 1em 0;
         font-size: 20px;
     }
+    &__addBtn {
+        height: $btnHeight;
+        width: 13em;
+        margin: 1em 1em 0;
+
+        border-radius: calc($btnHeight / 2);
+        letter-spacing: 0.05em;
+        font-weight: 500;
+        font-size: 15px;
+        color: #fff;
+        background-color: #111;
+        transition: all 0.2s;
+        &:hover {
+            color: #111;
+            background-color: #fff;
+            transition: all 0.3s;
+        }
+    }
+}
+.fillBtn {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
