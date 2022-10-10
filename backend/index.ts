@@ -27,7 +27,7 @@ app.use(errorHandler)
 const start = async () => {
     try {
         await sequelize.authenticate()
-        await sequelize.sync()        
+        await sequelize.sync({force: true})        
         console.log(chalk.hex('#05fa0d')('Successful conection to data base'));
         app.listen(PORT, () => { console.log(chalk.hex('#05fa0d')(`Server has been started on port ${PORT}`)) })
     }

@@ -11,25 +11,49 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
     declare activationLink: string
 }
 
-export class Rating extends Model<InferAttributes<Rating>, InferCreationAttributes<Rating>> {
-    declare id?: number
-    declare rate: string
-}
-
 User.init(
     {
-        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-        email: { type: DataTypes.STRING, unique: true },
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+
+        email: {
+            type: DataTypes.STRING,
+            unique: true,
+            validate: {
+                isEmail: true
+            }
+        },
+
         password: { type: DataTypes.STRING },
-        role: { type: DataTypes.STRING, defaultValue: 'USER' },
-        isActivated: { type: DataTypes.BOOLEAN, defaultValue: false },
-        activationLink: { type: DataTypes.STRING, unique: true }
+
+        role: {
+            type: DataTypes.STRING,
+            defaultValue: 'USER'
+        },
+
+        isActivated: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+
+        activationLink: {
+            type: DataTypes.STRING,
+            unique: true
+        }
     },
     {
         sequelize,
         tableName: 'user'
     }
 )
+
+export class Rating extends Model<InferAttributes<Rating>, InferCreationAttributes<Rating>> {
+    declare id?: number
+    declare rate: string
+}
 
 Rating.init(
     {

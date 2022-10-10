@@ -16,12 +16,6 @@ export class Device extends Model<InferAttributes<Device, { omit: 'info' }>, Inf
     declare info: DeviceInfo[]
 }
 
-export class DeviceInfo extends Model<InferAttributes<DeviceInfo>, InferCreationAttributes<DeviceInfo>> {
-    declare id?: number
-    declare title: string
-    declare describe: string
-}
-
 Device.init(
     {
         id: {
@@ -56,6 +50,12 @@ Device.init(
         tableName: 'device'
     }
 )
+
+export class DeviceInfo extends Model<InferAttributes<DeviceInfo>, InferCreationAttributes<DeviceInfo>> {
+    declare id?: number
+    declare title: string
+    declare describe: string
+}
 
 DeviceInfo.init(
     {

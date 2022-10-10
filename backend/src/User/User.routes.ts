@@ -8,12 +8,13 @@ const router = Router()
 router.post('/registration',
     body('email').isEmail(),
     body('password').isLength({ min: 8 }),
-    UserController.registration)
+    UserController.registration
+)
 router.post('/login', UserController.login)
 router.post('/logout', UserController.logout)
 router.get('/refresh', UserController.refresh)
 router.get('/', UserController.getAll)
 router.get('/activate/:link', UserController.activate)
-router.delete('/', CheckRoleMiddleware('ADMIN'), UserController.deleteAll)
+router.delete('/deleteAll', CheckRoleMiddleware('ADMIN'), UserController.deleteAll)
 
 export default router

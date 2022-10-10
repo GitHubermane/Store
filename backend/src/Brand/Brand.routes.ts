@@ -6,7 +6,7 @@ const router = Router()
 
 // router.post('/', CheckRoleMiddleware('ADMIN'), BrandController.create)
 router.post('/', BrandController.create)
+    .get('/', BrandController.getAll)
 
-router.get('/', BrandController.getAll)
 
 export default router

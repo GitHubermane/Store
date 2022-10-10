@@ -45,7 +45,7 @@ export const CartController = {
             const { id } = req.params
             const device = await CartService.deleteOne(refreshToken, id)
 
-            return res.json(device)
+            return res.json({message: 'Товар удален из корзины'})
         } catch (error: any) {
             next(ApiError.badRequest(error.message))
         }

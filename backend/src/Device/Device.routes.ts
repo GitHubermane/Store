@@ -5,10 +5,12 @@ import { CheckRoleMiddleware } from "../middleware/CheckRoleMiddleware";
 const router = Router()
 
 router.post('/', DeviceController.create)
-router.get('/', DeviceController.getAll)
+    .get('/', DeviceController.getAll)
+
 router.get('/:id', DeviceController.getOne)
+    .delete('/:id', CheckRoleMiddleware('ADMIN'), DeviceController.deleteOne)
+    
 router.delete('/deleteAll', CheckRoleMiddleware('ADMIN'), DeviceController.deleteAll)
-router.delete('/:id', CheckRoleMiddleware('ADMIN'), DeviceController.deleteOne)
 
 
 export default router
