@@ -15,7 +15,16 @@ const initialState = {
 export const CartSlice = createSlice({
     name: 'cart',
     initialState,
-    reducers: {},
+    reducers: {
+        setQuantity(state, action: PayloadAction<{id: number, quantity: number}>) {
+            const {id, quantity} = action.payload
+            state.devices.some((device) => {
+                if (device.deviceId === id) {
+                    device.quantity = quantity
+                }
+            })
+        }
+    },
     extraReducers: {
         [getCart.fulfilled.type]: (state, action: PayloadAction<ICart>) => {
             const { id, userId, devices, total } = action.payload
@@ -73,3 +82,4 @@ export const CartSlice = createSlice({
 })
 
 export const CartReducer = CartSlice.reducer
+export const {setQuantity} = CartSlice.actions

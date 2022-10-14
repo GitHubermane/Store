@@ -3,6 +3,7 @@ import { useTypedDispatch, useTypedSelector } from '../hooks/TypedReduxHooks'
 import { useDebounce } from '../hooks/useDebounce'
 import { ICartDeviceData } from '../models/ICartDeviceData'
 import { changeQuantity, getCart } from '../Redux/ActionCreator/Cart.AC'
+import { setQuantity } from '../Redux/Slice/Cart.slice'
 import '../styles/QuantityPanel.scss'
 
 interface propsType extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -22,25 +23,26 @@ export const QuantityPanel = (props: propsType) => {
             }
         }
     }
-    let [quantity, setQuantity] = useState(findingCartDevice(devices))
-    const debounced = useDebounce(String(quantity))
+    let findedCartDeviceQuant = findingCartDevice(devices)
+    const debounced = useDebounce(String(findedCartDeviceQuant))
 
     useEffect(() => {
-        if (quantity) changeQntNGetCart(id, quantity)
+        if (debounced) changeQntNGetCart(id, Number(debounced))
     }, [debounced])
 
     const changeQntNGetCart = async (id: number, quantity: number) => {
         await dispatch(changeQuantity({ id, quantity }))
         dispatch(getCart())
     }
+    
     const onChangeQuantity = async (quantity: number) => {
-        setQuantity(quantity)
+        dispatch(setQuantity({id, quantity}))
     }
     const onDecreaseQuantityClick = () => {
-        if (quantity) setQuantity(--quantity)
+        if (findedCartDeviceQuant) dispatch(setQuantity({id, quantity:--findedCartDeviceQuant}))
     }
     const onIncreaseQuantityClick = () => {
-        if (quantity) setQuantity(++quantity)
+        if (findedCartDeviceQuant) dispatch(setQuantity({ id, quantity: ++findedCartDeviceQuant }))
     }
 
     return (
@@ -54,7 +56,7 @@ export const QuantityPanel = (props: propsType) => {
             <input
                 className='QuantityPanel__input'
                 type='number'
-                value={quantity}
+                value={findedCartDeviceQuant}
                 onChange={(e) => { onChangeQuantity(Number(e.currentTarget.value)) }}
             />
             <button

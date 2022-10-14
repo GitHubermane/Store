@@ -21,12 +21,6 @@ export const ProductPage = () => {
         dispatch(fetchProduct(Number(id)))
     }, [])
 
-    const [fav, setFav] = useState(false)
-    const onAddToFavClick = () => {
-        setFav(!fav)
-    }
-
-
     return (
         <>
             {

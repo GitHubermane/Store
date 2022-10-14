@@ -1,0 +1,36 @@
+.RowItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 1em;
+    &__content {
+        display: flex;
+    }
+    &__img {
+        height: 7em;
+        width: 7em;
+    }
+    &__nameBlock {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    &__infoBlock {
+        padding: 0.5em 1em;
+    }
+    &__addBtn {
+        height: 3em;
+        padding: 0 1em;
+        font-weight: 500;
+        border-radius: 1em;
+        color: #000;
+        background-color: #bbb;
+        &:hover {
+            color: #fff;
+            background-color: #333;
+        }
+    }
+}
