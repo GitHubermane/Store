@@ -11,6 +11,6 @@ export interface ITokens {
 }
 
 export interface IUserData {
-    user: IUser,
+    user: IUser
     tokens: ITokens
 }

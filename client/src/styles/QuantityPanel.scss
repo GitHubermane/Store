@@ -1,0 +1,29 @@
+.QuantityPanel {
+    display: inline-flex;
+    &__input {
+        height: 1.5em;
+        width: 2em;
+        border-top: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        text-align: center;
+    }
+
+    &__incrBtn,
+    &__decrBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        background-color: #bbb;
+        &:hover {
+            color: #fff;
+            background-color: #333;
+        }
+    }
+    &__decrBtn {
+        border-radius: 0.5em 0 0 0.5em;
+    }
+    &__incrBtn {
+        border-radius: 0 0.5em 0.5em 0;
+    }
+}

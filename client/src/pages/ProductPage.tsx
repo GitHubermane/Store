@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { AddToFavBtn } from "../components/AddToFavBtn"
 import { Loader } from "../components/Loader"
 import { SERVER_URL } from "../env"
 import { useTypedDispatch, useTypedSelector } from "../hooks/TypedReduxHooks"
@@ -20,8 +21,6 @@ export const ProductPage = () => {
         dispatch(fetchProduct(Number(id)))
     }, [])
 
-
-
     const [fav, setFav] = useState(false)
     const onAddToFavClick = () => {
         setFav(!fav)
@@ -39,14 +38,10 @@ export const ProductPage = () => {
                             <div className='ProductPage__title'>
                                 {product.name}
                             </div>
-                            <button
+                            <AddToFavBtn
                                 className='ProductPage__favBtn'
-                                onClick={onAddToFavClick}
-                            >
-                                <span className={`material-symbols-outlined ${fav ? 'fillBtn' : ''}`}>
-                                    favorite
-                                </span>
-                            </button>
+                                id={Number(id)}
+                            />
                         </div>
                         <div className='ProductPage__block'>
                             {

@@ -1,6 +1,6 @@
-.CartDevice {
+.FavoriteDevice {
 
-    &__infoBlock, &__navLink {
+    &__navLink {
         display: flex;
         align-items: center;
     }
@@ -10,12 +10,5 @@
     }
     &__name {
         margin: 0 1em;
-    }
-    &__price {
-        margin: 0 1em;
-        font-weight: 600;
-    }
-    &__quantityInput {
-        width: 3em;
     }
 }

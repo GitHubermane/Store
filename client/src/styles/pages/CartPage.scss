@@ -1,11 +1,33 @@
 .CartPage {
-    height: 100%;
 
-    &__wrapper {
+    &__list,
+    &__total,
+    &__emptyCart  {
         background-color: #fff;
         width: 70%;
         margin: 0 auto;
         border-radius: 1em;
     }
 
+    &__total {
+        display: flex;
+        justify-content: space-between;
+        margin: 1em auto;
+        padding: 1em;
+    }
+    &__totalText {
+        color: #333;
+        font-size: 20px;
+    }
+    &__emptyCart {
+        
+        text-align: center;
+        font-weight: 400;
+        font-size: 22px;
+        padding: 1.5em;
+    }
+}
+.bold {
+    color: #000;
+    font-weight: 500;
 }

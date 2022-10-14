@@ -4,7 +4,7 @@ import { useDebounce } from "../hooks/useDebounce";
 import { fetchSerchedProducts } from "../Redux/ActionCreator/Products.AC";
 import { DropDown } from "./DropDown";
 import '../styles/Header.scss';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, PRODUCTS_ROUTE, CART_ROUTE, FAVORITE_ROUTE } from "../routes";
 import { logout } from "../Redux/ActionCreator/Auth.AC";
 
@@ -14,6 +14,7 @@ export const Header = () => {
 
     const { isAuth, userData } = useTypedSelector(state => state.Auth)
     const dispatch = useTypedDispatch()
+    const navigate = useNavigate()
     const debounced = useDebounce(search)
 
     const onFocusHandler = () => {
@@ -22,6 +23,7 @@ export const Header = () => {
 
     const onClickHandler = () => {
         dispatch(logout())
+        navigate('/')
     }
 
     useEffect(() => {

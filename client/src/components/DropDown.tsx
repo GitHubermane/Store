@@ -4,8 +4,14 @@ import { useTypedDispatch, useTypedSelector } from "../hooks/TypedReduxHooks"
 import { addToCart, getCart } from "../Redux/ActionCreator/Cart.AC";
 import { fetchProduct } from "../Redux/ActionCreator/Product.AC";
 import '../styles/DropDown.scss';
+import { QuantityPanel } from "./QuantityPanel";
 
-export const DropDown = (props: any) => {
+interface propsType {
+    setActive: (bool: boolean) => void
+    active: boolean
+}
+export const DropDown = (props: propsType) => {
+    const { devices } = useTypedSelector(state => state.Cart)
     const { searchedProducts } = useTypedSelector(state => state.Products)
     const dispatch = useTypedDispatch()
 
@@ -14,8 +20,8 @@ export const DropDown = (props: any) => {
         dispatch(fetchProduct(id))
     }
 
-    const onAddToCartClick = (id: number) => {
-        dispatch(addToCart(id))
+    const onAddToCartClick = async (id: number) => {
+        await dispatch(addToCart(id))
         dispatch(getCart())
     }
 
@@ -23,7 +29,7 @@ export const DropDown = (props: any) => {
         <div className="DropDown">
             {
                 searchedProducts.length != 0 ?
-                
+
                     searchedProducts.map((product) => (
                         <div
                             className="DropDown__container"
@@ -49,14 +55,23 @@ export const DropDown = (props: any) => {
                                     </div>
                                 </div>
                             </NavLink>
-                            <button
-                                className='DropDown__addBtn'
-                                onClick={() => { onAddToCartClick(Number(product.id)) }}
-                            >
-                                <span className="material-symbols-outlined">
-                                    add_shopping_cart
-                                </span>
-                            </button>
+                            {
+                                devices.some(i => i.deviceId === product.id) ?
+
+                                    <QuantityPanel
+                                        id={String(product.id)}
+                                    /> :
+
+                                    <button
+                                        className='DropDown__addBtn'
+                                        onClick={() => { onAddToCartClick(Number(product.id)) }}
+                                    >
+                                        <span className="material-symbols-outlined">
+                                            add_shopping_cart
+                                        </span>
+                                    </button>
+                            }
+
                         </div>
                     )) :
 

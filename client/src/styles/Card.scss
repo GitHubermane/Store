@@ -19,14 +19,16 @@
         align-items: center;
         justify-content: space-between;
     }
+    &__addBtnBlock {
+        margin: 1em 0 0;
+    }
     &__addBtn {
         height: 2em;
-        margin: 1em 0 0;
         padding: 0 1em;
         font-weight: 500;
         border-radius: 1em;
         color: #000;
-        background-color: #ddd;
+        background-color: #bbb;
         &:hover {
             color: #fff;
             background-color: #333;

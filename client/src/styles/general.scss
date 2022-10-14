@@ -1,0 +1,23 @@
+.delBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5em;
+    width: 2.5em;
+    line-height: 1;
+    border-radius: 1.25em;
+    color: #555;
+    &:hover {
+        color: #000;
+    }
+}
+
+.listWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    border-bottom: 0.1em solid #ddd;
+}

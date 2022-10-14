@@ -4,11 +4,11 @@ export interface IProductDataWithCount {
 }
 
 export interface IProductData {
-    id: number;
-    brandId: number;
-    typeId: number;
-    name: string;
-    price: number;
-    img: string;
-    rating: number;
+    id: number
+    brandId: number
+    typeId: number
+    name: string
+    price: number
+    img: string
+    rating: number
 }

@@ -44,9 +44,9 @@
     &__price {
         font-size: 14px;
         font-weight: 400;
+        margin: 0 1em;
     }
     &__addBtn {
-        margin: 0 0 0 0.3em;
         transition: 0.2s;
         &:hover {
             color: #fff;

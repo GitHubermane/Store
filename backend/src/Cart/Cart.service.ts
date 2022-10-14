@@ -71,6 +71,7 @@ class CartService {
         const cartDevice = await CartDevice.findOne({ where: { deviceId, cartId: cart?.id } })
         if (!cartDevice) throw ApiError.badRequest('Такого товара нет в корзине')
         cart!.total -= cartDevice!.price * cartDevice!.quantity
+        
         await cart.save()
         const deletedCartDevice = await CartDevice.destroy({
             where: { cartId: cart?.id, deviceId }

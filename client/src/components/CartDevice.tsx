@@ -1,31 +1,13 @@
-import { useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import { SERVER_URL } from "../env"
 import { useTypedDispatch } from "../hooks/TypedReduxHooks"
 import { ICartDeviceData } from "../models/ICartDeviceData"
-import { changeQuantity, deleteCartDevice, getCart } from "../Redux/ActionCreator/Cart.AC"
+import { deleteCartDevice, getCart } from "../Redux/ActionCreator/Cart.AC"
 import '../styles/CartDevice.scss'
+import { QuantityPanel } from "./QuantityPanel"
 
 export const CartDevice = (props: { device: ICartDeviceData }) => {
     const dispatch = useTypedDispatch()
-
-    // const [localQuantity, setLocalQuantity] = useState(props.device.quantity)
-    // const debounced = useDebounce(String(localQuantity))
-
-    // function debounce(func: () => void, timeout = 300) {
-    //     let timer: any;
-    //     return (...args: any) => {
-    //         clearTimeout(timer)
-    //         timer = setTimeout(() => { func.apply(this, args); }, timeout);
-    //     };
-    // }
-
-    const onChangeQuantity = async (id: number, quantity: number) => {
-        await dispatch(changeQuantity({ id, quantity }))
-        dispatch(getCart())
-
-        return null
-    }
 
     const onDeleteCartDevice = async (id: number) => {
         await dispatch(deleteCartDevice(id))
@@ -34,7 +16,7 @@ export const CartDevice = (props: { device: ICartDeviceData }) => {
 
     return (
         <div className='CartDevice'>
-            <div className='CartDevice__block'>
+            <div className='CartDevice__wrapper listWrapper'>
                 <div className='CartDevice__infoBlock'>
                     <NavLink
                         className='CartDevice__navLink'
@@ -53,16 +35,10 @@ export const CartDevice = (props: { device: ICartDeviceData }) => {
                     </div>
                 </div>
 
-                <input
-                    className='CartDevice__quantityInput'
-                    type='number'
-                    min='1'
-                    value={props.device.quantity}
-                    onChange={(e) => { onChangeQuantity(props.device.deviceId, Number(e.currentTarget.value)) }}
-                />
+                <QuantityPanel id={String(props.device.deviceId)}/>
 
                 <button
-                    className='CartDevice__delBtn'
+                    className='CartDevice__delBtn delBtn'
                     onClick={() => { onDeleteCartDevice(props.device.deviceId) }}
                 >
                     <span className="material-symbols-outlined">

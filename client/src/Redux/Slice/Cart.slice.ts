@@ -7,6 +7,7 @@ const initialState = {
     id: null as null | number,
     userId: null as null | number,
     devices: [] as Array<ICartDeviceData>,
+    total: null as null | number,
     isLoading: false,
     error: ''
 }
@@ -17,10 +18,12 @@ export const CartSlice = createSlice({
     reducers: {},
     extraReducers: {
         [getCart.fulfilled.type]: (state, action: PayloadAction<ICart>) => {
+            const { id, userId, devices, total } = action.payload
             state.error = ''
-            state.id = action.payload.id
-            state.userId = action.payload.userId
-            state.devices = action.payload.devices
+            state.id = id
+            state.userId = userId
+            state.devices = devices
+            state.total = total
             state.isLoading = false
         },
         [getCart.pending.type]: (state) => {

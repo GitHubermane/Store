@@ -20,7 +20,7 @@ export const ProductsPage = () => {
     return (
         <div className='Products__wrapper'>
             {
-                products.map((product) => (
+                products.map(product => (
                     <Card
                         key={product.id}
                         product={product}
