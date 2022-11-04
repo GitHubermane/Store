@@ -1,4 +1,4 @@
-import { Type } from "./Type.model"
+import { Type } from "../../models/Type.model"
 
 class TypeService {
     async create(type: { name: string }) {

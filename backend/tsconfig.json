@@ -21,6 +21,6 @@
   },
   "include": [
     "src/**/*"
-, "src/db.ts", "src/assotiations/index.ts"  ],
+, "src/db.ts", "src/assotiations/index.ts", "models/Brand.model.ts", "models/User.model.ts", "models/Type.model.ts", "models/Transaction.model.ts", "models/Order.model.ts", "models/Favourite.model.ts", "models/Device.model.ts", "models/Cart.model.ts"  ],
   "typescript.disableAutomaticTypeAcquisition": true,
 }

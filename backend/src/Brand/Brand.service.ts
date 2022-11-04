@@ -1,4 +1,4 @@
-import { Brand } from "./Brand.model"
+import { Brand } from "../../models/Brand.model"
 
 class BrandService {
     async create(brand: { name: string }) {

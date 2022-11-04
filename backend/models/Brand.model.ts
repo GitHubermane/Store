@@ -1,6 +1,6 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes } from 'sequelize';
-import { sequelize } from '../db';
-import { Device } from '../Device/Device.model';
+import {sequelize} from './index.js'
+import { Device } from './Device.model';
 
 export class Brand extends Model<InferAttributes<Brand>, InferCreationAttributes<Brand>> {
     declare id?: number

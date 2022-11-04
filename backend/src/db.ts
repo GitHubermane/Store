@@ -1,3 +1,5 @@
+//  Удалить после проверки
+
 import { Sequelize } from "sequelize";
 import "dotenv/config"
 export const sequelize = new Sequelize(

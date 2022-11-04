@@ -1,7 +1,7 @@
-import { Device } from "../Device/Device.model"
+import { Device } from "../../models/Device.model"
 import { ApiError } from "../error/ApiError"
 import TokenService from "../Token/Token.service"
-import { FavouriteDevice } from "./Favourite.model"
+import { FavouriteDevice } from "../../models/Favourite.model"
 
 class FavouriteService {
     

@@ -1,8 +1,8 @@
-import { Device } from "../Device/Device.model"
+import { Device } from "../../models/Device.model"
 import { ApiError } from "../error/ApiError"
 import TokenService from "../Token/Token.service"
 import { UserDto } from "../User/User.dto"
-import { Cart, CartDevice } from "./Cart.model"
+import { Cart, CartDevice } from "../../models/Cart.model"
 
 const findCartByTokenNDevice = async (token: string, deviceId: string): Promise<{ cart: Cart, device: Device }> => {
     const userData = await TokenService.verifyRefreshToken(token)

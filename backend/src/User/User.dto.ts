@@ -1,4 +1,4 @@
-import { User } from "./User.model"
+import { User } from "../../models/User.model"
 
 export class UserDto {
     id

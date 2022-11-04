@@ -1,6 +1,6 @@
-import { CartDevice } from "../Cart/Cart.model"
+import { CartDevice } from "../../models/Cart.model"
 import { findUserNCartByToken } from "../Cart/Cart.service"
-import { Order, OrderDevice } from "./Order.model"
+import { Order, OrderDevice } from "../../models/Order.model"
 
 class OrderService {
     async create(token: string) {

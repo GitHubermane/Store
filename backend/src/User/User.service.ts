@@ -4,10 +4,10 @@ import TokenService from "../Token/Token.service"
 import { UserDto } from "./User.dto"
 import { v4 } from "uuid"
 import MailService from "../service/Mail.service"
-import { User } from './User.model'
-import { Cart } from '../Cart/Cart.model'
-import { OrderDevice } from '../Order/Order.model'
-import { Transaction } from '../Transaction/Transaction.model'
+import { User } from '../../models/User.model'
+import { Cart } from '../../models/Cart.model'
+import { OrderDevice } from '../../models/Order.model'
+import { Transaction } from '../../models/Transaction.model'
 
 
 //  Функция создания генерации и сохранения токена

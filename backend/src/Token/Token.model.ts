@@ -1,5 +1,6 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes } from 'sequelize';
-import { sequelize } from '../db';
+
+import {sequelize} from '../../models/index.js'
 
 export class Token extends Model<InferAttributes<Token>, InferCreationAttributes<Token>> {
     declare id?: number

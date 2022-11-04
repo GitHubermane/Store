@@ -1,7 +1,8 @@
 import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize"
-import { sequelize } from '../db';
-import { Order } from "../Order/Order.model";
-import { User } from "../User/User.model";
+
+import {sequelize} from './index.js'
+import { Order } from "./Order.model";
+import { User } from "./User.model";
 
 export class Transaction extends Model<InferAttributes<Transaction>, InferCreationAttributes<Transaction>> {
     declare id?: number

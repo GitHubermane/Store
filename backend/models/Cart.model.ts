@@ -1,7 +1,7 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes, ForeignKey, QueryInterface } from 'sequelize';
-import { sequelize } from '../db';
-import { Device } from '../Device/Device.model';
-import { User } from '../User/User.model';
+import { sequelize } from './index.js'
+import { Device } from './Device.model';
+import { User } from './User.model';
 
 export class Cart extends Model<InferAttributes<Cart>, InferCreationAttributes<Cart>> {
     declare id?: number

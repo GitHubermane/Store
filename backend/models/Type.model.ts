@@ -1,7 +1,8 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes, ForeignKey } from 'sequelize';
-import { Brand } from '../Brand/Brand.model';
-import { sequelize } from '../db';
-import { Device } from '../Device/Device.model';
+import { Brand } from './Brand.model';
+
+import {sequelize} from './index.js'
+import { Device } from './Device.model';
 
 export class Type extends Model<InferAttributes<Type>, InferCreationAttributes<Type>> {
     declare id?: number

@@ -4,7 +4,7 @@ import fs from "fs"
 import { v4 } from "uuid"
 import { ApiError } from "../error/ApiError"
 import { Op } from "sequelize"
-import { Device, DeviceInfo } from "./Device.model"
+import { Device, DeviceInfo } from "../../models/Device.model"
 
 class DeviceService {
     async create(device: Device, file: UploadedFile) {
