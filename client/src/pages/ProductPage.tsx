@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { AddToFavBtn } from "../components/AddToFavBtn"
 import { Loader } from "../components/Loader"
-import { SERVER_URL } from "../env"
 import { useTypedDispatch, useTypedSelector } from "../hooks/TypedReduxHooks"
 import { addToCart } from "../Redux/ActionCreator/Cart.AC"
 import { fetchProduct } from "../Redux/ActionCreator/Product.AC"
@@ -42,7 +41,7 @@ export const ProductPage = () => {
                                 product.img &&
                                 <img
                                     className='ProductPage__img'
-                                    src={`${SERVER_URL}/${product.img}`}
+                                    src={`${process.env.REACT_APP_SERVER_URL}/${product.img}`}
                                 />
                             }
                             <div className='ProductPage__infoBlock'>

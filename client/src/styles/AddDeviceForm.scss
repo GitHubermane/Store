@@ -1,0 +1,19 @@
+.AddDeviceForm {
+    &__form {
+        display: inline-flex;
+        flex-direction: column;
+    }
+    &__select {
+        margin: 0.5em 0;
+        padding: 0.2em;
+        background-color: #333;
+        color: #fff;
+        border-radius: 0.5em;
+    }
+    &__input {
+        margin: 0.5em 0;
+        padding: 0.2em 0.5em;
+
+        border-bottom: 0.2em solid #333;
+    }
+}

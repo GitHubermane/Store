@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom"
-import { SERVER_URL } from "../env"
 import { useTypedDispatch, useTypedSelector } from "../hooks/TypedReduxHooks"
 import { IProductData } from "../models/IProductsData"
 import { addToCart, getCart } from "../Redux/ActionCreator/Cart.AC"
@@ -50,7 +49,7 @@ const CardItems = (props: CardPropsType) => {
                 <NavLink to={`/product/${id}`}>
                     <img
                         className='ProductItem__img'
-                        src={`${SERVER_URL}/${img}`}
+                        src={`${process.env.REACT_APP_SERVER_URL}/${img}`}
                     />
                 </NavLink>
             </div>
@@ -110,7 +109,7 @@ const RowItems = (props: RowPropsType) => {
                     <NavLink to={`/product/${id}`}>
                         <img
                             className='RowItem__img'
-                            src={`${SERVER_URL}/${img}`}
+                            src={`${process.env.REACT_APP_SERVER_URL}/${img}`}
                         />
                     </NavLink>
                 </div>

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IUser, IUserData } from '../../models/IUserData'
+import { IUser } from '../../models/IUserData'
 import { check, login, logout, registration } from '../ActionCreator/Auth.AC'
 
 const initialState = {

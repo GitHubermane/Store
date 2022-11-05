@@ -5,13 +5,13 @@ import { fetchSerchedProducts } from "../Redux/ActionCreator/Products.AC";
 import { DropDown } from "./DropDown";
 import '../styles/Header.scss';
 import { NavLink, useNavigate } from "react-router-dom";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, PRODUCTS_ROUTE, CART_ROUTE, FAVORITE_ROUTE } from "../routes";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, PRODUCTS_ROUTE, CART_ROUTE, FAVORITE_ROUTE, ADMIN_ROUTE } from "../routes";
 import { logout } from "../Redux/ActionCreator/Auth.AC";
 
 export const Header = () => {
     const [search, setSearch] = useState('')
     const [active, setActive] = useState(false)
-
+        
     const { isAuth, userData } = useTypedSelector(state => state.Auth)
     const dispatch = useTypedDispatch()
     const navigate = useNavigate()
@@ -78,6 +78,12 @@ export const Header = () => {
                         </div> :
 
                         <div className='Header__btnBlock'>
+                            <NavLink to={ADMIN_ROUTE}>
+                                <span className="material-symbols-outlined Header__cartBtn">
+                                    ADMIN
+                                </span>
+                            </NavLink>
+
                             <NavLink to={FAVORITE_ROUTE}>
                                 <span className="material-symbols-outlined Header__favBtn">
                                     favorite

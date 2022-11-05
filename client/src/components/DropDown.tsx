@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { SERVER_URL } from "../env"
 import { useTypedDispatch, useTypedSelector } from "../hooks/TypedReduxHooks"
 import { addToCart, getCart } from "../Redux/ActionCreator/Cart.AC";
 import { fetchProduct } from "../Redux/ActionCreator/Product.AC";
@@ -45,7 +44,7 @@ export const DropDown = (props: propsType) => {
                                     <div className="DropDown__nameNImg">
                                         <img
                                             className="DropDown__img"
-                                            src={`${SERVER_URL}/${product.img}`}
+                                            src={`${process.env.REACT_APP_SERVER_URL}/${product.img}`}
                                         />
                                         {product.name}
                                     </div>

@@ -1,3 +1,4 @@
+import { AdminPage } from "./pages/AdminPage"
 import { CartPage } from "./pages/CartPage"
 import { FavoritePage } from "./pages/FavoritePage"
 import { LoginPage } from "./pages/LoginPage"
@@ -16,20 +17,20 @@ export const ADMIN_ROUTE = '/admin'
 
 
 export const authRoutes = [
-    // {
-    //     path: ADMIN_ROUTE,
-    //     Component: Admin
-    // },
+    {
+        path: ADMIN_ROUTE,
+        Component: AdminPage
+    },
 
-    // {
-    //     path: CART_ROUTE,
-    //     Component: Cart
-    // },
+    {
+        path: CART_ROUTE,
+        Component: CartPage
+    },
 
-    // {
-    //     path: FAVORITE_ROUTE,
-    //     Component: FavoritePage
-    // }
+    {
+        path: FAVORITE_ROUTE,
+        Component: FavoritePage
+    }
 ]
 export const publicRoutes = [
     {
@@ -51,14 +52,4 @@ export const publicRoutes = [
         path: PRODUCT_ROUTE + '/:id',
         Component: ProductPage
     },
-
-    {
-        path: CART_ROUTE,
-        Component: CartPage
-    },
-
-    {
-        path: FAVORITE_ROUTE,
-        Component: FavoritePage
-    }
 ]

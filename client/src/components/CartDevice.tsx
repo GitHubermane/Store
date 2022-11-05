@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom"
-import { SERVER_URL } from "../env"
 import { useTypedDispatch } from "../hooks/TypedReduxHooks"
 import { ICartDeviceData } from "../models/ICartDeviceData"
 import { deleteCartDevice, getCart } from "../Redux/ActionCreator/Cart.AC"
@@ -24,7 +23,7 @@ export const CartDevice = (props: { device: ICartDeviceData }) => {
                     >
                         <img
                             className='CartDevice__img'
-                            src={`${SERVER_URL}/${props.device.img}`}
+                            src={`${process.env.REACT_APP_SERVER_URL}/${props.device.img}`}
                         />
                         <div className='CartDevice__name'>
                             {props.device.name}

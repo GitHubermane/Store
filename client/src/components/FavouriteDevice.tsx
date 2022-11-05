@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom"
-import { SERVER_URL } from "../env"
 import { useTypedDispatch } from "../hooks/TypedReduxHooks"
 import { IFavouriteDevice } from "../models/IFavouriteDevice"
 import { deleteFavouriteDevice, getFavourites } from "../Redux/ActionCreator/Favourite.AC"
@@ -27,7 +26,7 @@ export const FavoriteDevice = (props: propsType) => {
                 >
                     <img
                         className='FavoriteDevice__img'
-                        src={`${SERVER_URL}/${props.device.img}`}
+                        src={`${process.env.REACT_APP_SERVER_URL}/${props.device.img}`}
                     />
                     <div className='FavoriteDevice__name'>
                         {props.device.name}
