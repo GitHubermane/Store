@@ -1,0 +1,11 @@
+.InfoDropDown {
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: column;
+    background-color: #111;
+    padding: 1em;
+    border-radius: 0.5em;
+}

@@ -1,0 +1,36 @@
+.UserPage {
+    width: 70%;
+    margin: 0 auto;
+    &__topBlock {
+        display: flex;
+    }
+    &__avatar {
+        height: 15em;
+        width: 12em;
+        border-radius: 1em;
+    }
+    &__infoBlock {
+        margin: 0 0 0 3em;
+    }
+    &__registrated {
+        color: #777;
+    }
+    &__name {
+        color: #000;
+        font-weight: 600;
+        font-size: 25px;
+    }
+    &__devicesBlock {
+        margin: 1em 0 0;
+    }
+    &__devicesTitle {        
+        font-size: 25px;
+        font-weight: 600;
+    }
+    &__devices {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1em;
+        margin: 1em 0 0 ;
+    }
+}
